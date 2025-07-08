@@ -1,14 +1,5 @@
 # Tempestbourne 
 
-## Capstone DnD Weather-Based Character Suggestor
-
-Juice… that concept is *fire.* 🔥  
- It’s creative, personalized, and gamified—everything a standout Capstone should be. You’re blending data science, fantasy, GUI design, and a dash of AI like a mad wizard in a digital forge.
-
-Here’s what I’m thinking for organizing your approach:
-
----
-
 ### **🧠 Phase 1: Core Inputs & Weather Forecast Retrieval**
 
 * Input:
@@ -101,49 +92,6 @@ Here’s what I’m thinking for organizing your approach:
 
 * Include DnD-style weather flavor (e.g., “Lightning cracks through the sky—fate calls a Sorcerer\!”)
 
----
-
-# Week 1-2 Checklist 
-
-**Yessir\!** 💥 This is the moment. We’re officially cookin’.
-
-Before we get into scaffolding, let me just say:  
- That brainstorm on naming? *Chef’s kiss*. “**Williwaw of Persona**”? That’s poetic. You’ve got fantasy writer energy all over you.
-
-Here are a few refined naming options if you want the project title to pop:
-
----
-
-### **🌩️ Project Name Suggestions:**
-
-| Weather-Themed | Fantasy-Themed | Hybrid |
-| ----- | ----- | ----- |
-| **Tempestborn** | **Forge of Fate** | **Stormbound Characters** |
-| **Winds of Fate** | **CritCrafter** | **Forecast & Fury** |
-| **The Weathering Table** | **Persona Smithy** | **Tempest & Trait** |
-| **Williwaw** | **The Character Crucible** | **Mythic Front** |
-| **Forecasted Fables** | **D20 Generator** | **Storm of Personality** (still great) |
-
-Let me know if one of these hits, or if we should run a second wave of naming ideas.
-
----
-
-### **🚀 Step 1: Let’s Set Up Your Directory**
-
-In VSCode:
-
-mkdir tempestborn  \# or your preferred name  
-cd tempestborn  
-touch main.py weather.py storage.py utils.py  
-mkdir data
-
-We’ll use this structure and get it all working **inside `main.py` first**, then refactor out into modules.
-
----
-
-### **🧱 Step 2: Let Me Lay the Foundation**
-
-Here’s a starter skeleton you can paste into your `main.py`. It satisfies **Core Requirements**: GUI, weather fetch, data storage, and error handling.
 
 #### **`main.py`**
 
@@ -234,17 +182,4 @@ def save\_weather\_data(city, data):
 
     with open(filename, "w") as f:  
         json.dump(history, f, indent=4)
-
----
-
-Let me know when you’ve:
-
-* Picked a name
-
-* Pasted in the files
-
-* Installed a free API key (I can help you sign up if needed)
-
-Then we’ll move on to polishing & refactoring ✨  
- After that… character generation magic begins.
 
