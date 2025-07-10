@@ -29,18 +29,23 @@ def fetch_and_display_weather():
     except Exception as e:
         messagebox.showerror("Error", str(e))
 
-# GUI Setup
+# GUI Setup / altered for more gothic effect
 root = tk.Tk()
-root.title("TEMPESTBOURNE Characater Generator", tkFont.Font(family="Gothic", size=24, weight="bold", color="midnightred"))
-root.geometry("550x350")
+root.title("TEMPESTBOURNE Characater Generator") 
+root.geometry("600x400")
+root.configure(bg="#2f2f2f")
+
+title_font = tkFont.Font(family="Gothic", size=24, weight="bold")
+tk.Label(root, text="TEMPESTBOURNE Character Generator", font=title_font, fg="dark red").pack(pady=(10, 0))
+
 
 tk.Label(root, text="Enter City:").pack(pady=(10, 0))
 city_entry = tk.Entry(root, width=30)
 city_entry.pack()
 
 tk.Label(root, integer="Choose Level (1-20):").pack(pady=(10, 0))
-city_entry = tk.Entry(root, width=30)
-city_entry.pack()
+level_entry = tk.Entry(root, width=30)
+level_entry.pack()
 
 tk.Button(root, text="Create Characters", command=fetch_and_display_weather).pack(pady=10)
 
