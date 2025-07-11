@@ -1,0 +1,53 @@
+[
+    {
+        "timestamp": "2025-07-10T19:31:23.381181",
+        "weather": {
+            "coord": {
+                "lon": -87.9668,
+                "lat": 43.0006
+            },
+            "weather": [
+                {
+                    "id": 501,
+                    "main": "Rain",
+                    "description": "moderate rain",
+                    "icon": "10d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 22.14,
+                "feels_like": 22.32,
+                "temp_min": 21,
+                "temp_max": 23.2,
+                "pressure": 1013,
+                "humidity": 73,
+                "sea_level": 1013,
+                "grnd_level": 987
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 4.12,
+                "deg": 110
+            },
+            "rain": {
+                "1h": 3.16
+            },
+            "clouds": {
+                "all": 75
+            },
+            "dt": 1752190218,
+            "sys": {
+                "type": 2,
+                "id": 2081761,
+                "country": "US",
+                "sunrise": 1752142941,
+                "sunset": 1752197507
+            },
+            "timezone": -18000,
+            "id": 5263058,
+            "name": "Milwaukee",
+            "cod": 200
+        }
+    }
+]

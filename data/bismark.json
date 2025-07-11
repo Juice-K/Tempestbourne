@@ -1,0 +1,51 @@
+[
+    {
+        "timestamp": "2025-07-10T19:28:41.449844",
+        "weather": {
+            "coord": {
+                "lon": 11.5667,
+                "lat": 52.6667
+            },
+            "weather": [
+                {
+                    "id": 802,
+                    "main": "Clouds",
+                    "description": "scattered clouds",
+                    "icon": "03n"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 15.43,
+                "feels_like": 15.09,
+                "temp_min": 15.43,
+                "temp_max": 15.43,
+                "pressure": 1018,
+                "humidity": 79,
+                "sea_level": 1018,
+                "grnd_level": 1012
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 2.04,
+                "deg": 348,
+                "gust": 2.01
+            },
+            "clouds": {
+                "all": 45
+            },
+            "dt": 1752190121,
+            "sys": {
+                "type": 2,
+                "id": 2000066,
+                "country": "DE",
+                "sunrise": 1752203005,
+                "sunset": 1752262478
+            },
+            "timezone": 7200,
+            "id": 2948229,
+            "name": "Bismark",
+            "cod": 200
+        }
+    }
+]

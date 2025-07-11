@@ -1,0 +1,434 @@
+[
+    {
+        "timestamp": "2025-07-10T19:17:35.839598",
+        "weather": {
+            "coord": {
+                "lon": -122.6762,
+                "lat": 45.5234
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 26.33,
+                "feels_like": 26.33,
+                "temp_min": 24.76,
+                "temp_max": 28.23,
+                "pressure": 1022,
+                "humidity": 52,
+                "sea_level": 1022,
+                "grnd_level": 1009
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 4.12,
+                "deg": 310
+            },
+            "clouds": {
+                "all": 75
+            },
+            "dt": 1752189019,
+            "sys": {
+                "type": 2,
+                "id": 2013569,
+                "country": "US",
+                "sunrise": 1752150731,
+                "sunset": 1752206378
+            },
+            "timezone": -25200,
+            "id": 5746545,
+            "name": "Portland",
+            "cod": 200
+        }
+    },
+    {
+        "timestamp": "2025-07-10T19:17:36.268204",
+        "weather": {
+            "coord": {
+                "lon": -122.6762,
+                "lat": 45.5234
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 26.33,
+                "feels_like": 26.33,
+                "temp_min": 24.76,
+                "temp_max": 28.23,
+                "pressure": 1022,
+                "humidity": 52,
+                "sea_level": 1022,
+                "grnd_level": 1009
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 4.12,
+                "deg": 310
+            },
+            "clouds": {
+                "all": 75
+            },
+            "dt": 1752189019,
+            "sys": {
+                "type": 2,
+                "id": 2013569,
+                "country": "US",
+                "sunrise": 1752150731,
+                "sunset": 1752206378
+            },
+            "timezone": -25200,
+            "id": 5746545,
+            "name": "Portland",
+            "cod": 200
+        }
+    },
+    {
+        "timestamp": "2025-07-10T19:18:21.651810",
+        "weather": {
+            "coord": {
+                "lon": -122.6762,
+                "lat": 45.5234
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 26.33,
+                "feels_like": 26.33,
+                "temp_min": 24.76,
+                "temp_max": 28.23,
+                "pressure": 1022,
+                "humidity": 52,
+                "sea_level": 1022,
+                "grnd_level": 1009
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 4.12,
+                "deg": 310
+            },
+            "clouds": {
+                "all": 75
+            },
+            "dt": 1752189019,
+            "sys": {
+                "type": 2,
+                "id": 2013569,
+                "country": "US",
+                "sunrise": 1752150731,
+                "sunset": 1752206378
+            },
+            "timezone": -25200,
+            "id": 5746545,
+            "name": "Portland",
+            "cod": 200
+        }
+    },
+    {
+        "timestamp": "2025-07-10T19:18:23.171044",
+        "weather": {
+            "coord": {
+                "lon": -122.6762,
+                "lat": 45.5234
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 26.33,
+                "feels_like": 26.33,
+                "temp_min": 24.76,
+                "temp_max": 28.23,
+                "pressure": 1022,
+                "humidity": 52,
+                "sea_level": 1022,
+                "grnd_level": 1009
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 4.12,
+                "deg": 310
+            },
+            "clouds": {
+                "all": 75
+            },
+            "dt": 1752189019,
+            "sys": {
+                "type": 2,
+                "id": 2013569,
+                "country": "US",
+                "sunrise": 1752150731,
+                "sunset": 1752206378
+            },
+            "timezone": -25200,
+            "id": 5746545,
+            "name": "Portland",
+            "cod": 200
+        }
+    },
+    {
+        "timestamp": "2025-07-10T19:18:28.987753",
+        "weather": {
+            "coord": {
+                "lon": -122.6762,
+                "lat": 45.5234
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 26.33,
+                "feels_like": 26.33,
+                "temp_min": 24.76,
+                "temp_max": 28.23,
+                "pressure": 1022,
+                "humidity": 52,
+                "sea_level": 1022,
+                "grnd_level": 1009
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 4.12,
+                "deg": 310
+            },
+            "clouds": {
+                "all": 75
+            },
+            "dt": 1752189019,
+            "sys": {
+                "type": 2,
+                "id": 2013569,
+                "country": "US",
+                "sunrise": 1752150731,
+                "sunset": 1752206378
+            },
+            "timezone": -25200,
+            "id": 5746545,
+            "name": "Portland",
+            "cod": 200
+        }
+    },
+    {
+        "timestamp": "2025-07-10T19:18:30.304122",
+        "weather": {
+            "coord": {
+                "lon": -122.6762,
+                "lat": 45.5234
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 26.33,
+                "feels_like": 26.33,
+                "temp_min": 24.76,
+                "temp_max": 28.23,
+                "pressure": 1022,
+                "humidity": 52,
+                "sea_level": 1022,
+                "grnd_level": 1009
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 4.12,
+                "deg": 310
+            },
+            "clouds": {
+                "all": 75
+            },
+            "dt": 1752189019,
+            "sys": {
+                "type": 2,
+                "id": 2013569,
+                "country": "US",
+                "sunrise": 1752150731,
+                "sunset": 1752206378
+            },
+            "timezone": -25200,
+            "id": 5746545,
+            "name": "Portland",
+            "cod": 200
+        }
+    },
+    {
+        "timestamp": "2025-07-10T19:18:31.811539",
+        "weather": {
+            "coord": {
+                "lon": -122.6762,
+                "lat": 45.5234
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 26.33,
+                "feels_like": 26.33,
+                "temp_min": 24.76,
+                "temp_max": 28.23,
+                "pressure": 1022,
+                "humidity": 52,
+                "sea_level": 1022,
+                "grnd_level": 1009
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 4.12,
+                "deg": 310
+            },
+            "clouds": {
+                "all": 75
+            },
+            "dt": 1752189019,
+            "sys": {
+                "type": 2,
+                "id": 2013569,
+                "country": "US",
+                "sunrise": 1752150731,
+                "sunset": 1752206378
+            },
+            "timezone": -25200,
+            "id": 5746545,
+            "name": "Portland",
+            "cod": 200
+        }
+    },
+    {
+        "timestamp": "2025-07-10T19:18:33.087844",
+        "weather": {
+            "coord": {
+                "lon": -122.6762,
+                "lat": 45.5234
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 26.33,
+                "feels_like": 26.33,
+                "temp_min": 24.76,
+                "temp_max": 28.23,
+                "pressure": 1022,
+                "humidity": 52,
+                "sea_level": 1022,
+                "grnd_level": 1009
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 4.12,
+                "deg": 310
+            },
+            "clouds": {
+                "all": 75
+            },
+            "dt": 1752189019,
+            "sys": {
+                "type": 2,
+                "id": 2013569,
+                "country": "US",
+                "sunrise": 1752150731,
+                "sunset": 1752206378
+            },
+            "timezone": -25200,
+            "id": 5746545,
+            "name": "Portland",
+            "cod": 200
+        }
+    },
+    {
+        "timestamp": "2025-07-10T19:18:35.053944",
+        "weather": {
+            "coord": {
+                "lon": -122.6762,
+                "lat": 45.5234
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 26.33,
+                "feels_like": 26.33,
+                "temp_min": 24.76,
+                "temp_max": 28.23,
+                "pressure": 1022,
+                "humidity": 52,
+                "sea_level": 1022,
+                "grnd_level": 1009
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 4.12,
+                "deg": 310
+            },
+            "clouds": {
+                "all": 75
+            },
+            "dt": 1752189019,
+            "sys": {
+                "type": 2,
+                "id": 2013569,
+                "country": "US",
+                "sunrise": 1752150731,
+                "sunset": 1752206378
+            },
+            "timezone": -25200,
+            "id": 5746545,
+            "name": "Portland",
+            "cod": 200
+        }
+    }
+]

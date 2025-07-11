@@ -1,0 +1,51 @@
+[
+    {
+        "timestamp": "2025-07-10T19:18:23.368118",
+        "weather": {
+            "coord": {
+                "lon": -85.1647,
+                "lat": 34.257
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 26.77,
+                "feels_like": 28.69,
+                "temp_min": 25.7,
+                "temp_max": 29.16,
+                "pressure": 1015,
+                "humidity": 73,
+                "sea_level": 1015,
+                "grnd_level": 988
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 2.26,
+                "deg": 236,
+                "gust": 4.43
+            },
+            "clouds": {
+                "all": 58
+            },
+            "dt": 1752188995,
+            "sys": {
+                "type": 2,
+                "id": 2009938,
+                "country": "US",
+                "sunrise": 1752143810,
+                "sunset": 1752195292
+            },
+            "timezone": -14400,
+            "id": 4219762,
+            "name": "Rome",
+            "cod": 200
+        }
+    }
+]
