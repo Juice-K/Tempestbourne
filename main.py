@@ -28,56 +28,6 @@ WEATHER_CLASS_MAP = {
     "Smoke": ("Fire Genasi", "Sorcerer"),
 }
 
-
-
-# def fetch_and_display_weather():
-#     city = city_entry.get()
-#     if not city:
-#         messagebox.showwarning("Input Error", "Please enter a city.")
-#         return
-
-#     try:
-#         data = get_current_weather(city)
-#         save_weather_data(city, data)
-
-#         result = f"City: {data['name']}\n"
-#         result += f"Condition: {data['weather'][0]['description']}\n"
-#         result += f"Temp: {data['main']['temp']}°C\n"
-#         result += f"Humidity: {data['main']['humidity']}%\n"
-#         result += f"Wind: {data['wind']['speed']} m/s\n"
-#         output_label.config(text=result)
-
-#     except Exception as e:
-#         messagebox.showerror("Error", str(e))
-
-# # GUI Setup / altered for more gothic effect
-# root = tk.Tk()
-# root.title("TEMPESTBOURNE Characater Generator") 
-# root.geometry("600x400")
-# root.configure(bg="#2f2f2f")
-
-# title_font = tkFont.Font(family="Gothic", size=24, weight="bold")
-# tk.Label(root, text="TEMPESTBOURNE Character Generator", font=title_font, fg="dark red").pack(pady=(10, 0))
-
-
-# tk.Label(root, text="Enter City:").pack(pady=(10, 0))
-# city_entry = tk.Entry(root, width=30)
-# city_entry.pack()
-
-# tk.Label(root, integer="Choose Level (1-20):").pack(pady=(10, 0))
-# level_entry = tk.Entry(root, width=30)
-# level_entry.pack()
-
-# tk.Button(root, text="Create Characters", command=fetch_and_display_weather).pack(pady=10)
-
-# output_label = tk.Label(root, text="", justify="left")
-# output_label.pack(pady=10)
-
-# if __name__ == "__main__":
-#     root.mainloop()
-
-
-
 # a bunch of random cities
 CITY_LIST = [
     "Tokyo", "Reykjavik", "Lima", "Cairo", "Moscow", "Istanbul",
@@ -95,7 +45,8 @@ def get_random_city(exclude):
 
 def fetch_and_display_weather():
     city = city_entry.get()
-    level = level_var.get()
+    raw_level = level_var.get()
+    level = int(''.join(filter(str.isdigit, raw_level)))
 
     if not city:
         messagebox.showwarning("Input Error", "Please enter a city.")
@@ -203,12 +154,12 @@ tk.Label(
     bg="#2f2f2f"
 ).pack()
 
-# Emojified levels with flavor
+# Emojified levels with flavor (spent way too much time coming up with all these ;>)
 level_options = [
-    "💀 1 – Fresh Meat", "💀 2", "💀 3", "💀 4", "💀 5 – Skeleton Fodder",
-    "⚔️ 6", "⚔️ 7 – Trained Fighter", "⚔️ 8", "⚔️ 9", "⚔️ 10 – Elite",
+    "💀 1 – Fresh Meat", "💀 2 – Greenhorn", "💀 3 – Amateur", "💀 4 – Showing Promise", "💀 5 – Skeleton Fodder",
+    "⚔️ 6 – Budding Talent", "⚔️ 7 – Trained Fighter", "⚔️ 8 – Experienced", "⚔️ 9 – ", "⚔️ 10 – Elite",
     "🔥 11", "🔥 12", "🔥 13 – Rising Legend", "🔥 14", "🔥 15",
-    "🐉 16", "🐉 17", "🐉 18 – Dragon-Blooded", "🐉 19", "🐉 20 – Mythic"
+    "🐉 16", "🐉 17", "🐉 18 – Dragon-Blooded", "🐉 19 – Legendary", "🐉 20 – Mythic"
 ]
 
 level_var = tk.StringVar(value=level_options[0])

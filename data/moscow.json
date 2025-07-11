@@ -47,5 +47,54 @@
             "name": "Moscow",
             "cod": 200
         }
+    },
+    {
+        "timestamp": "2025-07-10T21:11:08.010431",
+        "weather": {
+            "coord": {
+                "lon": 37.6156,
+                "lat": 55.7522
+            },
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01n"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 19.24,
+                "feels_like": 18.76,
+                "temp_min": 19.24,
+                "temp_max": 22.29,
+                "pressure": 1014,
+                "humidity": 59,
+                "sea_level": 1014,
+                "grnd_level": 996
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 3.52,
+                "deg": 121,
+                "gust": 11.18
+            },
+            "clouds": {
+                "all": 5
+            },
+            "dt": 1752195537,
+            "sys": {
+                "type": 1,
+                "id": 9027,
+                "country": "RU",
+                "sunrise": 1752195622,
+                "sunset": 1752257357
+            },
+            "timezone": 10800,
+            "id": 524901,
+            "name": "Moscow",
+            "cod": 200
+        }
     }
 ]

@@ -1,0 +1,50 @@
+[
+    {
+        "timestamp": "2025-07-10T21:12:15.585694",
+        "weather": {
+            "coord": {
+                "lon": -88.0751,
+                "lat": 42.7495
+            },
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 19.52,
+                "feels_like": 19.88,
+                "temp_min": 18.43,
+                "temp_max": 20.08,
+                "pressure": 1012,
+                "humidity": 90,
+                "sea_level": 1012,
+                "grnd_level": 985
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 2.06,
+                "deg": 90
+            },
+            "clouds": {
+                "all": 0
+            },
+            "dt": 1752196335,
+            "sys": {
+                "type": 2,
+                "id": 2020577,
+                "country": "US",
+                "sunrise": 1752143019,
+                "sunset": 1752197481
+            },
+            "timezone": -18000,
+            "id": 5268253,
+            "name": "Racine",
+            "cod": 200
+        }
+    }
+]
