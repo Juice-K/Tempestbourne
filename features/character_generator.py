@@ -1,6 +1,10 @@
 # Character Generator
 import random
-from utils.constants import RACES, CLASSES, ALIGNMENTS, WEATHER_TO_TRAITS
+from utils.constants import RACES, CLASSES, ALIGNMENTS, WEATHER_TO_TRAITS, WEATHER_MAIN_TO_CLASSES 
+from utils.constants import WEATHER_CODE_TO_RACE
+
+
+
 
         # double check for correct imports / imports subject to change depending on randomized performance
 class Character:
@@ -30,8 +34,8 @@ def generate_character(weather_data, level, gender):
     wind_speed = weather_data['wind']['speed']
 
     # --- Trait Decisions ---
-    race = choose_race(description, temperature)
-    char_class = choose_class(description, wind_speed)
+    race = choose_race(weather_data)
+    char_class = choose_class(weather_data) 
     alignment = choose_alignment(description)
     name = generate_name(race, gender)
     hp = calculate_hp(char_class, level)
@@ -46,14 +50,31 @@ def generate_character(weather_data, level, gender):
         stats, skills, equipment, bio, gif_path
     )
 
+def choose_race(weather_data):
+    code = weather_data["weather"][0]["id"]
+    return WEATHER_CODE_TO_RACE.get(code, random.choice(RACES))
+
+
     # filler functions for trait decisions (see utils/constants.py)
     # subject to change depending on randomized performance
-def choose_race(description, temperature):
-    # Example stub: if it's cold, lean toward Dwarves or Goliaths
-    return random.choice(RACES)
 
-def choose_class(description, wind_speed):
-    return random.choice(CLASSES)
+def choose_class(weather_data):
+    main = weather_data["weather"][0]["main"]
+    wind = weather_data.get("wind", {}).get("speed", 0)
+    temp = weather_data.get("main", {}).get("temp", 20)
+
+    # Pull themed options from main weather type
+    candidates = WEATHER_MAIN_TO_CLASSES.get(main, CLASSES)
+
+    # Optional: spice it up with temp/wind
+    if wind > 15 and "Monk" in candidates:
+        return "Monk"
+    elif temp < 0 and "Cleric" in candidates:
+        return "Cleric"
+    elif temp > 30 and "Barbarian" in candidates:
+        return "Barbarian"
+
+    return random.choice(candidates)
 
 def choose_alignment(description):
     for keyword in WEATHER_TO_TRAITS:
