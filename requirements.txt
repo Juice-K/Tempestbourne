@@ -1,0 +1,10 @@
+# Add your Python dependencies here, one per line.
+
+pandas==2.1.3
+numpy==1.25.2
+scikit-learn==1.3.2
+matplotlib==3.8.0
+seaborn==0.12.2
+scipy==1.11.4
+requests==2.31.0
+python-dotenv==1.0.0 
