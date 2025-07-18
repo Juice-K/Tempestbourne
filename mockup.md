@@ -5,20 +5,23 @@ tempestbourne/
 ├── requirements.txt               # All dependencies (tkinter, requests, pillow, etc.)
 ├── README.md
 ├── mockup.md                      # Visuals, sketches, or logic flow
-│
+│── starter_code.py                # Code for any additional features before implementation 
+
 ├── assets/                        # All visual/media assets
 │   ├── gifs/                      # Race+Class-based animated GIFs
 │   │   ├── elf_fighter.gif
 │   │   ├── tiefling_bard.gif
 │   │   └── ...
 │   └── templates/                 # PDF/character sheet templates (if needed)
-│
+││   │   └── README.md
+
 ├── data/                          # Weather samples, saved characters, logs
 │   ├── sample_weather.json
 │   ├── generated_characters.json
 │   └── log.txt
 │
 ├── features/                      # App logic modules (core brains)
+│   │   └── init
 │   ├── character_generator.py     # Builds full character from weather + inputs
 │   ├── weather_fetcher.py         # Pulls forecast data (city + random city)
 │   ├── name_generator.py          # Race- and gender-based name logic
@@ -28,14 +31,17 @@ tempestbourne/
 │   └── export_tools.py            # Saves to PDF or character sheets
 │
 ├── gui/                           # GUI elements (optional modular split)
+│   │   └── init
 │   ├── input_form.py              # Builds and validates user form
 │   ├── results_display.py         # Shows generated characters and GIFs
 │   └── buttons.py                 # Export/save buttons
 │
 ├── storage/                       # Local save/load (optional DB-style logic)
+│   │   └── init
 │   └── local_db.py                # Save/load character data
 │
 ├── utils/                         # Constants, helpers, formatters
+│   │   └── init
 │   ├── constants.py               # Lists of races, classes, alignments, weather mappings
 │   ├── formatters.py              # Helper functions for text, colors, etc.
 │   └── validators.py              # Input validation, type checks, etc.
