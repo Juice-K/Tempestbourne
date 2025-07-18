@@ -1,6 +1,8 @@
 # Name Generator
 import random
 
+# Initialize NAME_BANKS as an empty dictionary before use
+
 # Sample name banks — expand these over time
 # NAME_BANKS = {
 #     "Elf": {
@@ -39,6 +41,66 @@ import random
 # Testing the ChatGPT name-bank-style logic of grouping names by race and gender 
 
 import random
+
+# Scaffolded NAME_BANKS covering all WEATHER_CODE_TO_RACE entries
+NAME_BANKS = {
+    "Half-Orc":       {"Male": [], "Female": [], "Nonbinary": []},
+    "Kenku":          {"Male": [], "Female": [], "Nonbinary": []},
+    "Gnome":          {"Male": [], "Female": [], "Nonbinary": []},
+    "Locathah":       {"Male": [], "Female": [], "Nonbinary": []},
+    "Shadar-kai":     {"Male": [], "Female": [], "Nonbinary": []},
+    "Autognome":      {"Male": [], "Female": [], "Nonbinary": []},
+    "Triton":         {"Male": [], "Female": [], "Nonbinary": []},
+    "Warforged":      {"Male": [], "Female": [], "Nonbinary": []},
+    "Owlin":          {"Male": [], "Female": [], "Nonbinary": []},
+    "Half-Elf":       {"Male": [], "Female": [], "Nonbinary": []},
+    "Kobold":         {"Male": [], "Female": [], "Nonbinary": []},
+    "Dwarf":          {"Male": [], "Female": [], "Nonbinary": []},
+    "Hadozee":        {"Male": [], "Female": [], "Nonbinary": []},
+    "Loxodon":        {"Male": [], "Female": [], "Nonbinary": []},
+    "Tortle":         {"Male": [], "Female": [], "Nonbinary": []},
+    "Harengon":       {"Male": [], "Female": [], "Nonbinary": []},
+    "Verdan":         {"Male": [], "Female": [], "Nonbinary": []},
+    "Hexblood":       {"Male": [], "Female": [], "Nonbinary": []},
+    "Tiefling":       {"Male": [], "Female": [], "Nonbinary": []},
+    "Grung":          {"Male": [], "Female": [], "Nonbinary": []},
+    "Dhampir":        {"Male": [], "Female": [], "Nonbinary": []},
+    "Githzerai":      {"Male": [], "Female": [], "Nonbinary": []},
+    "Changeling":     {"Male": [], "Female": [], "Nonbinary": []},
+    "Yuan-Ti Pureblood":{"Male": [], "Female": [], "Nonbinary": []},
+    "Halfling":       {"Male": [], "Female": [], "Nonbinary": []},
+    "Leonin":         {"Male": [], "Female": [], "Nonbinary": []},
+    "Aarakocra":      {"Male": [], "Female": [], "Nonbinary": []},
+    "Thri-kreen":     {"Male": [], "Female": [], "Nonbinary": []},
+    "Satyr":          {"Male": [], "Female": [], "Nonbinary": []},
+    "Goblin":         {"Male": [], "Female": [], "Nonbinary": []},
+    "Hobgoblin":      {"Male": [], "Female": [], "Nonbinary": []},
+    "Kalashtar":      {"Male": [], "Female": [], "Nonbinary": []},
+    "Eladrin":        {"Male": [], "Female": [], "Nonbinary": []},
+    "Dragonborn":     {"Male": [], "Female": [], "Nonbinary": []},
+    "Shifter":        {"Male": [], "Female": [], "Nonbinary": []},
+    "Sea Elf":        {"Male": [], "Female": [], "Nonbinary": []},
+    "Elf":            {"Male": [], "Female": [], "Nonbinary": []},
+    "Vedalken":       {"Male": [], "Female": [], "Nonbinary": []},
+    "Genasi":         {"Male": [], "Female": [], "Nonbinary": []},
+    "Orc":            {"Male": [], "Female": [], "Nonbinary": []},
+    "Bugbear":        {"Male": [], "Female": [], "Nonbinary": []},
+    "Fairy":          {"Male": [], "Female": [], "Nonbinary": []},
+    "Plasmoid":       {"Male": [], "Female": [], "Nonbinary": []},
+    "Reborn":         {"Male": [], "Female": [], "Nonbinary": []},
+    "Firbolg":        {"Male": [], "Female": [], "Nonbinary": []},
+    "Lizardfolk":     {"Male": [], "Female": [], "Nonbinary": []},
+    "Astral Elf":     {"Male": [], "Female": [], "Nonbinary": []},
+    "Tabaxi":         {"Male": [], "Female": [], "Nonbinary": []},
+    "Centaur":        {"Male": [], "Female": [], "Nonbinary": []},
+    "Githyanki":      {"Male": [], "Female": [], "Nonbinary": []},
+    "Goliath":        {"Male": [], "Female": [], "Nonbinary": []},
+    "Minotaur":       {"Male": [], "Female": [], "Nonbinary": []},
+    "Simic Hybrid":   {"Male": [], "Female": [], "Nonbinary": []},
+    "Human":          {"Male": [], "Female": [], "Nonbinary": []},
+    "Aasimar":        {"Male": [], "Female": [], "Nonbinary": []},
+}
+
 
 NAME_BANKS["Dragonborn"] = {
     "Male": [
@@ -330,66 +392,197 @@ NAME_BANKS.update({
     }
 })
 
+NAME_BANKS.update({
+    "Aasimar": {
+        "Male": ["Caelion", "Zoriel", "Theron", "Elydran", "Malchior"],
+        "Female": ["Seraphine", "Thalindra", "Auriel", "Nyxara", "Velistra"],
+        "Nonbinary": ["Solien", "Arzire", "Virel", "Eiren", "Nozari"]
+    },
+    "Genasi": {
+        "Male": ["Kael", "Zarith", "Vonn", "Raelak", "Tharion"],
+        "Female": ["Saphra", "Aeris", "Ignaya", "Caldra", "Nymira"],
+        "Nonbinary": ["Zuren", "Tyrix", "Velka", "Orin", "Lazir"]
+    },
+    "Gith": {
+        "Male": ["Vrak", "Zorrek", "Kuthar", "Nithrak", "Tharn"],
+        "Female": ["Zelith", "Karrax", "Lurza", "Drineth", "Mizhara"],
+        "Nonbinary": ["Tzarn", "Vritha", "Xelruk", "Jarneth", "Qel"]
+    },
+    "Gnome": {
+        "Male": ["Fizzik", "Boddynock", "Nimble", "Tinker", "Zibber"],
+        "Female": ["Wizzle", "Pippa", "Nyxie", "Tinka", "Franny"],
+        "Nonbinary": ["Glim", "Zip", "Marnie", "Tib", "Rollo"]
+    },
+    "Warforged": {
+        "Male": ["Ironclad", "Bolt", "Thorn", "Vector", "Anvil"],
+        "Female": ["Circuit", "Glint", "Echo", "Nova", "Shielda"],
+        "Nonbinary": ["Cipher", "Core", "Phase", "Unit-9", "Mesh"]
+    },
+    "Changeling": {
+        "Male": ["Jyn", "Thade", "Evan", "Sil", "Rilen"],
+        "Female": ["Vira", "Shai", "Tressa", "Mira", "Ylith"],
+        "Nonbinary": ["Whisp", "Nyme", "Ash", "Quinn", "Loen"]
+    },
+    "Kalashtar": {
+        "Male": ["Ruhan", "Veseth", "Kiran", "Thovan", "Melek"],
+        "Female": ["Shaana", "Thavira", "Isen", "Nali", "Yezra"],
+        "Nonbinary": ["Vael", "Dureth", "Lior", "Riveth", "Sona"]
+    },
+})
+
+NAME_BANKS.update({
+    "Tabaxi": {
+        "Male": ["Claw-of-Dusk", "Howl-in-Reeds", "Swift-Talon", "Echo-in-Snow", "Jumps-the-Gap"],
+        "Female": ["Whispers-at-Dawn", "Pounce-of-Moonlight", "Huntress-Beneath-Stars", "Flicker-of-Tail", "Sings-to-Wind"],
+        "Nonbinary": ["Walks-in-Shadow", "Still-Water", "Chase-the-Light", "Eyes-of-Ember", "Sleeps-in-Trees"]
+    },
+    "Triton": {
+        "Male": ["Korrash", "Varnan", "Pelion", "Thurok", "Maros"],
+        "Female": ["Zalara", "Nymene", "Calithra", "Orisha", "Virella"],
+        "Nonbinary": ["Auron", "Zariel", "Nethys", "Kelmar", "Syrren"]
+    },
+    "Minotaur": {
+        "Male": ["Brak", "Toruk", "Draz", "Vornak", "Gorim"],
+        "Female": ["Ravka", "Thura", "Brelka", "Zarn", "Molgra"],
+        "Nonbinary": ["Korr", "Vakra", "Jurn", "Tharn", "Grek"]
+    },
+    "Kenku": {
+        "Male": ["Click", "Rattle", "Echo", "Scratch", "Hush"],
+        "Female": ["Whistle", "Croak", "Trill", "Chirp", "Screech"],
+        "Nonbinary": ["Caw", "Rustle", "Clack", "Shush", "Flick"]
+    },
+    "Kobold": {
+        "Male": ["Skit", "Drik", "Bazzik", "Kriv", "Snark"],
+        "Female": ["Ziri", "Vexi", "Triss", "Nixi", "Brelka"],
+        "Nonbinary": ["Klik", "Razz", "Zan", "Mik", "Yit"]
+    },
+    "Yuan-Ti": {
+        "Male": ["Sszar", "Vethis", "Nashir", "Zekhul", "Thaz"],
+        "Female": ["Zashara", "Sylsith", "Veysha", "Nithari", "Ossira"],
+        "Nonbinary": ["Isskar", "Sethys", "Nyza", "Tharnis", "Khaeth"]
+    },
+    "Tortle": {
+        "Male": ["Shello", "Granok", "Tork", "Molto", "Brunto"],
+        "Female": ["Shellyra", "Tamiya", "Groka", "Bila", "Nokta"],
+        "Nonbinary": ["Rokko", "Yurra", "Moko", "Tarn", "Zibba"]
+    },
+})
+
+NAME_BANKS.update({
+    "Fairy": {
+        "Male": ["Thistlewhim", "Brambleshade", "Zephyrdew", "Flickerflint", "Wanderleaf"],
+        "Female": ["Glimmerpetal", "Dewdrop", "Lunaria", "Faegrace", "Mosswhirl"],
+        "Nonbinary": ["Twilightgleam", "Whimsyroot", "Mistwink", "Starglen", "Silversap"]
+    },
+    "Eladrin": {
+        "Male": ["Thalion", "Aerendyl", "Velion", "Caerthas", "Saryndor"],
+        "Female": ["Yllawen", "Faelara", "Irielle", "Nuala", "Thessara"],
+        "Nonbinary": ["Eluneth", "Mythil", "Sylrin", "Orithil", "Vaeris"]
+    },
+    "Aasimar": {
+        "Male": ["Cassiel", "Thamior", "Lucen", "Seraphan", "Aurex"],
+        "Female": ["Solene", "Virelai", "Aracel", "Mireth", "Noema"],
+        "Nonbinary": ["Zariel", "Ruvael", "Elyndor", "Caelis", "Halos"],
+    },
+    "Tiefling": {
+        "Male": ["Azazel", "Malrik", "Zareth", "Kaelzor", "Dravik"],
+        "Female": ["Lilix", "Nyxara", "Velmora", "Zeraphine", "Drazira"],
+        "Nonbinary": ["Skirn", "Izzeth", "Vashar", "Kyrith", "Xarnis"]
+    },
+    "Changeling": {
+        "Male": ["Shade", "Cymric", "Pell", "Thorne", "Neris"],
+        "Female": ["Whispa", "Syla", "Eira", "Mirin", "Thalia"],
+        "Nonbinary": ["Reven", "Ashen", "Vex", "Solin", "Dreem"]
+    },
+    "Dhampir": {
+        "Male": ["Corvan", "Vladin", "Mirek", "Thorne", "Lucan"],
+        "Female": ["Selene", "Virel", "Morga", "Tressa", "Nyss"],
+        "Nonbinary": ["Ascar", "Ruvan", "Noct", "Velka", "Zheren"]
+    },
+    "Hexblood": {
+        "Male": ["Thistal", "Groven", "Brelthorn", "Hexar", "Varn"],
+        "Female": ["Ythra", "Velda", "Nimira", "Zessia", "Grenda"],
+        "Nonbinary": ["Myxa", "Tharnis", "Zavik", "Wyrmra", "Ossith"]
+    },
+})
+
+NAME_BANKS.update({
+    "Air Genasi": {
+        "Male": ["Zephiros", "Aeris", "Whispar", "Galeon", "Thyros"],
+        "Female": ["Sylpha", "Vayra", "Breezea", "Mistralyn", "Elarra"],
+        "Nonbinary": ["Skylen", "Vexair", "Namiir", "Orryn", "Whirl"]
+    },
+    "Earth Genasi": {
+        "Male": ["Granith", "Torak", "Boulderfist", "Durog", "Sten"],
+        "Female": ["Terrara", "Garnessa", "Brilla", "Moltra", "Kavra"],
+        "Nonbinary": ["Rokk", "Onyx", "Velgrun", "Tharn", "Gravax"]
+    },
+    "Fire Genasi": {
+        "Male": ["Ignan", "Vuldar", "Pyrrhus", "Ashkar", "Caelon"],
+        "Female": ["Embera", "Kavira", "Solixa", "Fyrra", "Lazra"],
+        "Nonbinary": ["Cindyr", "Flarex", "Volc", "Searin", "Pyraxis"]
+    },
+    "Water Genasi": {
+        "Male": ["Neroth", "Cascade", "Marryn", "Drenik", "Coralor"],
+        "Female": ["Tahlassa", "Miryss", "Oceana", "Serina", "Llyndra"],
+        "Nonbinary": ["Aqen", "Drift", "Rivun", "Sevril", "Tide"],
+    },
+    "Githyanki": {
+        "Male": ["Vazk", "Zarrin", "Kralk", "Yzran", "Thok"],
+        "Female": ["Zithra", "Krasha", "Velza", "Ryyka", "Drenza"],
+        "Nonbinary": ["Qorr", "Thaz", "Kren", "Xol", "Varn"],
+    },
+    "Githzerai": {
+        "Male": ["Tarn", "Zeran", "Omrik", "Balir", "Saeth"],
+        "Female": ["Lirra", "Menya", "Zeyna", "Ruhla", "Eshya"],
+        "Nonbinary": ["Saev", "Qetha", "Zyn", "Arkan", "Thaal"]
+    },
+    "Shardmind": {
+        "Male": ["Crystar", "Oblix", "Tharnix", "Glasser", "Karnite"],
+        "Female": ["Shardra", "Velquinn", "Glissara", "Quenra", "Myxina"],
+        "Nonbinary": ["Prism", "Klynthe", "Zerix", "Refract", "Silix"]
+    }
+})
+
+NAME_BANKS.update({
+    "Aasimar": {
+        "Male": ["Caelum", "Lucian", "Thalor", "Orius", "Zephan"],
+        "Female": ["Seraphine", "Amariel", "Caelira", "Lumina", "Elariel"],
+        "Nonbinary": ["Solyn", "Virel", "Zhara", "Aural", "Radiant"]
+    },
+    "Eladrin": {
+        "Male": ["Theren", "Calen", "Faelor", "Sylthas", "Auren"],
+        "Female": ["Nyari", "Vaelora", "Syllune", "Elarra", "Illyra"],
+        "Nonbinary": ["Mythir", "Qirael", "Lunor", "Vaelis", "Trineth"]
+    },
+    "Deep Gnome": {
+        "Male": ["Nibbin", "Grivver", "Zundel", "Thim", "Klob"],
+        "Female": ["Trilla", "Wizzle", "Norna", "Sibbi", "Darra"],
+        "Nonbinary": ["Zib", "Crint", "Jivvi", "Plooz", "Snarn"]
+    },
+    "Kalashtar": {
+        "Male": ["Velu", "Doshin", "Kiran", "Tashan", "Qorim"],
+        "Female": ["Sahari", "Vireya", "Luma", "Nishka", "Tevani"],
+        "Nonbinary": ["Qira", "Leshan", "Tyne", "Oriva", "Zelith"]
+    },
+    "Thri-Kreen": {
+        "Male": ["Chikt", "Krrash", "T’rrn", "Zekkt", "Clikk"],
+        "Female": ["S’krii", "Trik’cha", "K’til", "Zarraq", "Kr’neen"],
+        "Nonbinary": ["Tikra", "Zirr", "Ch’cha", "Rik’tik", "N’kra"]
+    },
+    "Astral Elf": {
+        "Male": ["Myrren", "Talyon", "Velor", "Xarion", "Elyth"],
+        "Female": ["Saela", "Ylyra", "Alurea", "Thyssia", "Vaeni"],
+        "Nonbinary": ["Quaris", "Zirael", "Ilun", "Elyra", "Starin"]
+    },
+    "Verdan": {
+        "Male": ["Gribb", "Durnik", "Thizz", "Borkle", "Snazz"],
+        "Female": ["Mippa", "Krivna", "Zuli", "Glooma", "Snigga"],
+        "Nonbinary": ["Fizzik", "Gronka", "Snorp", "Tribby", "Jox"]
+    }
+})
 
 
-# Scaffolded NAME_BANKS covering all WEATHER_CODE_TO_RACE entries
-NAME_BANKS = {
-    "Half-Orc":       {"Male": [], "Female": [], "Nonbinary": []},
-    "Kenku":          {"Male": [], "Female": [], "Nonbinary": []},
-    "Gnome":          {"Male": [], "Female": [], "Nonbinary": []},
-    "Locathah":       {"Male": [], "Female": [], "Nonbinary": []},
-    "Shadar-kai":     {"Male": [], "Female": [], "Nonbinary": []},
-    "Autognome":      {"Male": [], "Female": [], "Nonbinary": []},
-    "Triton":         {"Male": [], "Female": [], "Nonbinary": []},
-    "Warforged":      {"Male": [], "Female": [], "Nonbinary": []},
-    "Owlin":          {"Male": [], "Female": [], "Nonbinary": []},
-    "Half-Elf":       {"Male": [], "Female": [], "Nonbinary": []},
-    "Kobold":         {"Male": [], "Female": [], "Nonbinary": []},
-    "Dwarf":          {"Male": [], "Female": [], "Nonbinary": []},
-    "Hadozee":        {"Male": [], "Female": [], "Nonbinary": []},
-    "Loxodon":        {"Male": [], "Female": [], "Nonbinary": []},
-    "Tortle":         {"Male": [], "Female": [], "Nonbinary": []},
-    "Harengon":       {"Male": [], "Female": [], "Nonbinary": []},
-    "Verdan":         {"Male": [], "Female": [], "Nonbinary": []},
-    "Hexblood":       {"Male": [], "Female": [], "Nonbinary": []},
-    "Tiefling":       {"Male": [], "Female": [], "Nonbinary": []},
-    "Grung":          {"Male": [], "Female": [], "Nonbinary": []},
-    "Dhampir":        {"Male": [], "Female": [], "Nonbinary": []},
-    "Githzerai":      {"Male": [], "Female": [], "Nonbinary": []},
-    "Changeling":     {"Male": [], "Female": [], "Nonbinary": []},
-    "Yuan-Ti Pureblood":{"Male": [], "Female": [], "Nonbinary": []},
-    "Halfling":       {"Male": [], "Female": [], "Nonbinary": []},
-    "Leonin":         {"Male": [], "Female": [], "Nonbinary": []},
-    "Aarakocra":      {"Male": [], "Female": [], "Nonbinary": []},
-    "Thri-kreen":     {"Male": [], "Female": [], "Nonbinary": []},
-    "Satyr":          {"Male": [], "Female": [], "Nonbinary": []},
-    "Goblin":         {"Male": [], "Female": [], "Nonbinary": []},
-    "Hobgoblin":      {"Male": [], "Female": [], "Nonbinary": []},
-    "Kalashtar":      {"Male": [], "Female": [], "Nonbinary": []},
-    "Eladrin":        {"Male": [], "Female": [], "Nonbinary": []},
-    "Dragonborn":     {"Male": [], "Female": [], "Nonbinary": []},
-    "Shifter":        {"Male": [], "Female": [], "Nonbinary": []},
-    "Sea Elf":        {"Male": [], "Female": [], "Nonbinary": []},
-    "Elf":            {"Male": [], "Female": [], "Nonbinary": []},
-    "Vedalken":       {"Male": [], "Female": [], "Nonbinary": []},
-    "Genasi":         {"Male": [], "Female": [], "Nonbinary": []},
-    "Orc":            {"Male": [], "Female": [], "Nonbinary": []},
-    "Bugbear":        {"Male": [], "Female": [], "Nonbinary": []},
-    "Fairy":          {"Male": [], "Female": [], "Nonbinary": []},
-    "Plasmoid":       {"Male": [], "Female": [], "Nonbinary": []},
-    "Reborn":         {"Male": [], "Female": [], "Nonbinary": []},
-    "Firbolg":        {"Male": [], "Female": [], "Nonbinary": []},
-    "Lizardfolk":     {"Male": [], "Female": [], "Nonbinary": []},
-    "Astral Elf":     {"Male": [], "Female": [], "Nonbinary": []},
-    "Tabaxi":         {"Male": [], "Female": [], "Nonbinary": []},
-    "Centaur":        {"Male": [], "Female": [], "Nonbinary": []},
-    "Githyanki":      {"Male": [], "Female": [], "Nonbinary": []},
-    "Goliath":        {"Male": [], "Female": [], "Nonbinary": []},
-    "Minotaur":       {"Male": [], "Female": [], "Nonbinary": []},
-    "Simic Hybrid":   {"Male": [], "Female": [], "Nonbinary": []},
-    "Human":          {"Male": [], "Female": [], "Nonbinary": []},
-    "Aasimar":        {"Male": [], "Female": [], "Nonbinary": []},
-}
 
 def generate_name(race: str, gender: str) -> str:
     try:
