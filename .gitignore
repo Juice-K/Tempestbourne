@@ -1,14 +1,89 @@
-# Byte-compiled / cache files
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
 
-# Virtual environment
-venv/
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# PyEnv
+.python-version
+
+# Env files
 .env
+.env.*
 
-# macOS system files
+# Virtualenv
+venv/
+ENV/
+env/
+.venv/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code settings
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# MacOS
 .DS_Store
 
-# VS Code files
-.vscode/
-.env
+# Logs and runtime files
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# PyCharm
+.idea/
+
+# Temp files
+*.swp
+*~
+
+# pytest cache
+.pytest_cache/
+
+# Your project-specific data files (optional)
+data/*.json
+data/log.txt
+data/*.log
+
+# Assets cache or temp files (optional)
+assets/__pycache__/
