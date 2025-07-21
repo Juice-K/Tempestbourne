@@ -1,10 +1,10 @@
 # Export Tools
 # features/export_tools.py
 
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter   # pretty obvious - 8.5 inches x 11 inches or 612 points x 792 points
+from reportlab.pdfgen import canvas   # for creating PDF files and treating them like a "canvas"
 from PIL import Image  # optional: for adding images
-import os
+import os  # for file path operations 
 
 def export_character_to_pdf(character_data: dict, filename: str = "tempestbourne_character.pdf"):
     """

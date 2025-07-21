@@ -10,4 +10,7 @@ requests==2.31.0
 python-dotenv==1.0.0  # for environment variable management
 reportlab==3.6.12  # for PDF generation
 Pillow  # optional, for images
+beautifulsoup4==4.12.2  # for web scraping
+
+
 
