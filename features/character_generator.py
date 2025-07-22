@@ -4,8 +4,6 @@ from utils.constants import RACES, CLASSES, ALIGNMENTS, WEATHER_TO_TRAITS, WEATH
 from utils.constants import WEATHER_CODE_TO_RACE
 
 
-
-
         # double check for correct imports / imports subject to change depending on randomized performance
 class Character:
     def __init__(self, name, gender, race, char_class, alignment, hp, level, stats, skills, equipment, bio, gif_path):

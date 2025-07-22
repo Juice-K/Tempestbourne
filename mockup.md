@@ -35,6 +35,8 @@ tempestbourne/
 │   ├── input_form.py              # Builds and validates user form
 │   ├── results_display.py         # Shows generated characters and GIFs
 │   └── buttons.py                 # Export/save buttons
+│   └── gif_preview_frame.py       # Gives logic for previewing GIFs
+
 │
 ├── storage/                       # Local save/load (optional DB-style logic)
 │   │   └── init
