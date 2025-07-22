@@ -12,6 +12,7 @@ reportlab==3.6.12  # for PDF generation
 Pillow  # optional, for images
 beautifulsoup4==4.12.2  # for web scraping 
 openai==1.0.0  # for OpenAI API interactions 
+selenium==4.20.0  # for web automation 
 
 
 

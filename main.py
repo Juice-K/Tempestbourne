@@ -7,6 +7,20 @@ from gui.gif_preview_frame import GifPreviewFrame
 from gui.results_display import CharacterResultsFrame
 from features.character_generator import generate_character
 from features.weather_fetcher import get_sample_weather_data
+from features.gif_selector import get_gif_placeholder
+
+character = {
+    "race": "Goliath",
+    "class": "Barbarian",
+    "alignment": "Chaotic Good",
+    "weapon": "a lightning-charged greataxe",
+    "weather_desc": "stormy skies swirling around him",
+    "mood": "primal fury"
+}
+
+gif_data = get_gif_placeholder(character)
+print(gif_data["prompt"])  # For testing
+
 
 # first version character display gui (ChatGPT)
 root = Tk()
