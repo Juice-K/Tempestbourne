@@ -63,7 +63,7 @@ def generate_bio(name, race, cls):
 
 from features.bio_generator import generate_bio
 
-# After generating the name, race, and class:
-bio = generate_bio(name, race, char_class)
-print("BIO:\n", bio)
+# # After generating the name, race, and class:
+# bio = generate_bio(name, race, char_class)
+# print("BIO:\n", bio)
 

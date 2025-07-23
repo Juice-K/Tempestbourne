@@ -13,8 +13,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # Set your OpenAI API key
-OPENAI_API_KEY = os.getenv("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")  # Best practice: set this in your environment
-
+OPENAI_API_KEY = os.getenv("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")  
 def generate_image(prompt, output_path="generated_image.png"):
     response = openai.images.generate(
         model="dall-e-3",

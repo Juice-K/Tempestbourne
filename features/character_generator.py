@@ -4,7 +4,7 @@ from utils.constants import RACES, CLASSES, ALIGNMENTS, WEATHER_TO_TRAITS, WEATH
 from utils.constants import WEATHER_CODE_TO_RACE
 import os
 from features.ai_prompter import generate_prompt  # ✅ Generates text prompt
-from features.gif_generator import generate_gif    # ✅ Generates animated GIF
+from features.gif_generator import generate_image    # ✅ Generates initial GIF
 from features.gif_selector import get_gif_path     # ✅ Fallback static GIF
 
 

@@ -592,6 +592,11 @@ def generate_name(race: str, gender: str) -> str:
     except Exception as e:
         print(f"[NameGen Error] {e}")
         return "Unknown"
+    
+def get_random_name(race, gender):
+    # Placeholder logic
+    return f"{race}_{gender}_Name"
+
 
 if __name__ == "__main__":
     # Quick smoke-test

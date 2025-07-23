@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv("OPENWEATHER_API_KEY")
+API_KEY = os.getenv("5bf329464f3b0c878c8eb1846b65c08e")
 BASE_URL = "https://api.openweathermap.org/data/2.5/forecast"
 
 def get_forecast_weather(city, date_str, time_str):

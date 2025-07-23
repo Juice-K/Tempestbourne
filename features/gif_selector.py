@@ -1,8 +1,6 @@
 # Gif Selector
 # features/gif_selector.py
 
-# features/gif_selector.py
-
 import os
 import openai  # openai library for DALL·E 3 API
 from PIL import Image  # Pillow for image handling
