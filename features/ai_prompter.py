@@ -17,6 +17,13 @@ def generate_prompt(race, char_class, alignment, gender, weather_data):
         "sun-drenched" if temp > 30 else
         "moody"
     )
+    # Choose a gendered noun for visual tone (optional)
+    if gender.lower() == "male":
+        gender_noun = "man"
+    elif gender.lower() == "female":
+        gender_noun = "woman"
+    else:
+        gender_noun = "player"  # fallback for nonbinary
 
 
     # Core prompt

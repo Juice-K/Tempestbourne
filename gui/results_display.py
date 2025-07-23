@@ -19,7 +19,7 @@ class CharacterResultsFrame(tk.Frame):
         bio_label.pack(pady=(0, 10))
 
         # --- GIF Preview ---
-        gif_frame = GifPreviewFrame(self, gif_path=character.gif_path)
+        gif_frame = GifPreviewFrame(self, gif_path=character.gif_path or "assets/default.gif")
         gif_frame.pack(pady=(0, 10))
 
         # --- Stats ---
@@ -44,3 +44,14 @@ class CharacterResultsFrame(tk.Frame):
         # --- Alignment Display ---
         align_label = ttk.Label(self, text=f"Alignment: {character.alignment}", font=("Helvetica", 10, "italic"))
         align_label.pack(pady=(5, 10))
+        
+        #  Font protection/standardization 
+        font=("Helvetica", 14, "bold") or ("TkDefaultFont", 14, "bold")
+
+
+# option stats fram
+# row = 0
+# for i, (stat, value) in enumerate(character.stats.items()):
+#     ttk.Label(stats_frame, text=f"{stat}: {value}").grid(row=row, column=i % 2, sticky="w", padx=10)
+#     if i % 2 == 1:
+#         row += 1

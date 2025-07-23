@@ -53,6 +53,8 @@ tempestbourne/
 │
 └── tests/                         # Future-proof: unit tests (if desired)
     └── test_character_gen.py
+    └── tests_print_statements.py  # List of print statements for testing (accidentally wiped, needs updating)
+
 
 
 Ultimately, the GUI will allow players to:
