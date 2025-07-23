@@ -2,6 +2,11 @@
 import random
 from utils.constants import RACES, CLASSES, ALIGNMENTS, WEATHER_TO_TRAITS, WEATHER_MAIN_TO_CLASSES 
 from utils.constants import WEATHER_CODE_TO_RACE
+import os
+from features.ai_prompter import generate_prompt  # ✅ Generates text prompt
+from features.gif_generator import generate_gif    # ✅ Generates animated GIF
+from features.gif_selector import get_gif_path     # ✅ Fallback static GIF
+
 
 
         # double check for correct imports / imports subject to change depending on randomized performance
@@ -23,6 +28,7 @@ class Character:
     def to_dict(self):
         return vars(self)
 
+# updated character generator to refernce GIF logic
 def generate_character(weather_data, level, gender):
     """
     Generate a 5e character based on weather and user input.
@@ -33,7 +39,7 @@ def generate_character(weather_data, level, gender):
 
     # --- Trait Decisions ---
     race = choose_race(weather_data)
-    char_class = choose_class(weather_data) 
+    char_class = choose_class(weather_data)
     alignment = choose_alignment(description)
     name = generate_name(race, gender)
     hp = calculate_hp(char_class, level)
@@ -42,23 +48,17 @@ def generate_character(weather_data, level, gender):
     equipment = choose_equipment(alignment)
     bio = generate_bio(race, char_class, alignment, weather_data)
 
-    # --- Prompt & GIF Generation ---
-    character_stub = Character(
-        name=name, gender=gender, race=race, char_class=char_class, alignment=alignment,
-        hp=hp, level=level, stats=stats, skills=skills, equipment=equipment, bio=bio,
-        gif_path=None
-    )
-
-    prompt = generate_prompt_from_character(character_stub, weather_data)
-    filename = f"{race}_{char_class}_{alignment}_{random.randint(1000,9999)}.gif".replace(" ", "_")
-    save_path = os.path.join("assets/gifs", filename)
+    # --- GIF Generation Pipeline ---
+    gif_filename = f"{race}_{char_class}_{alignment}_{random.randint(1000,9999)}.gif".replace(" ", "_")
+    gif_save_path = os.path.join("assets/gifs", gif_filename)
 
     try:
-        generate_gif(prompt, save_path)
-        gif_path = save_path
+        prompt = generate_prompt(race, char_class, alignment, gender, weather_data)
+        generate_gif(prompt, gif_save_path)
+        gif_path = gif_save_path
     except Exception as e:
-        print(f"[GIF ERROR] Using fallback GIF instead — {e}")
-        gif_path = get_gif_path(race, char_class)  # fallback
+        print(f"[GIF Generator] Failed, using fallback GIF: {e}")
+        gif_path = get_gif_path(race, char_class)
 
     return Character(
         name, gender, race, char_class, alignment, hp, level,

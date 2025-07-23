@@ -1,65 +1,70 @@
-# Main
+# main.py
 
-from features.gif_selector import generate_gif_prompt, generate_gif_from_prompt
-import tkinter as Tk 
+import tkinter as tk
 from tkinter import ttk
-from gui.gif_preview_frame import GifPreviewFrame 
+from gui.input_form import InputForm
 from gui.results_display import CharacterResultsFrame
 from features.character_generator import generate_character
-from features.weather_fetcher import get_sample_weather_data
-from features.gif_selector import get_gif_placeholder
+from features.weather_fetcher import get_weather_data_for_city, get_random_city
+import datetime
 
-character = {
-    "race": "Goliath",
-    "class": "Barbarian",
-    "alignment": "Chaotic Good",
-    "weapon": "a lightning-charged greataxe",
-    "weather_desc": "stormy skies swirling around him",
-    "mood": "primal fury"
-}
+# --- App Setup ---
+root = tk.Tk()
+root.title("Tempestbourne: Weather-Forged Adventurers")
 
-gif_data = get_gif_placeholder(character)
-print(gif_data["prompt"])  # For testing
+# Container for results (we’ll clear and repopulate it after form submission)
+results_container = ttk.Frame(root)
+results_container.pack(padx=20, pady=20)
+
+# --- Form Submission Handler ---
+def handle_form_submission(form_data):
+    """
+    Triggered when user submits the form. Generates two characters:
+    one for the selected city, one for a random city.
+    Displays both in the GUI.
+    """
+    # Step 1: Extract form data
+    city = form_data["city"]
+    date = form_data["date"]
+    time = form_data["time"]
+    gender = form_data["gender"]
+    level = int(form_data["level"])
+
+    # Step 2: Compose datetime for forecast
+    requested_datetime = f"{date} {time}"
+
+    # Step 3: Fetch weather for user city
+    try:
+        weather_user = get_weather_data_for_city(city, requested_datetime)
+    except Exception as e:
+        print(f"[Weather Error] Failed to fetch weather for user city: {e}")
+        return
+
+    # Step 4: Pick a random city and fetch its weather
+    random_city = get_random_city(exclude=city)
+    try:
+        weather_random = get_weather_data_for_city(random_city, requested_datetime)
+    except Exception as e:
+        print(f"[Weather Error] Failed to fetch weather for random city: {e}")
+        return
+
+    # Step 5: Generate both characters
+    char_user = generate_character(weather_user, level, gender)
+    char_random = generate_character(weather_random, level, gender)
+
+    # Step 6: Clear previous results and render new ones
+    for widget in results_container.winfo_children():
+        widget.destroy()
+
+    ttk.Label(results_container, text=f"🌆 {city} Adventurer", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
+    CharacterResultsFrame(results_container, character=char_user).pack(pady=10)
+
+    ttk.Label(results_container, text=f"🧭 Random City: {random_city}", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
+    CharacterResultsFrame(results_container, character=char_random).pack(pady=10)
 
 
-# first version character display gui (ChatGPT)
-root = Tk()
-root.title("Character Sheet")
-
-# Simulate a weather pull and character gen
-weather_data = get_sample_weather_data()
-char_obj = generate_character(weather_data, level=3, gender="Male")
-
-# Display character results
-results_frame = CharacterResultsFrame(root, character=char_obj)
-results_frame.pack(padx=20, pady=20)
+# --- Form UI ---
+form = InputForm(root, on_submit_callback=handle_form_submission)
+form.pack(padx=20, pady=(20, 10))
 
 root.mainloop()
-
-
-#  placeholder gui for GIF generation (ChatGPT)
-root = Tk()
-root.title("Tempestbourne Character Viewer")
-
-# Preview a placeholder gif
-gif_frame = GifPreviewFrame(root, gif_path="assets/gifs/placeholder.gif")
-gif_frame.pack(padx=20, pady=20)
-
-root.mainloop()
-
-
-#  Placeholder character data for testing (ChatGPT)
-example_character = {
-    "race": "Half-Orc",
-    "class": "Barbarian",
-    "alignment": "Chaotic Good",
-    "traits": ["stormy", "wild", "unyielding"],
-    "equipment": {
-        "weapons": ["greataxe", "javelin"]
-    },
-    "level": 5
-}
-
-prompt = generate_gif_prompt(example_character)
-gif_path = generate_gif_from_prompt(prompt)
-print("GIF saved or hosted at:", gif_path)
