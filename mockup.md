@@ -2,6 +2,7 @@ tempestbourne/
 │
 ├── main.py                        # Launch GUI, handles user interaction
 ├── .env                           # Stores API keys (OpenWeatherMap, DALL·E, etc.)
+├── .gitignore
 ├── requirements.txt               # All dependencies (tkinter, requests, pillow, etc.)
 ├── README.md
 ├── mockup.md                      # Visuals, sketches, or logic flow
@@ -21,7 +22,7 @@ tempestbourne/
 │   └── log.txt
 │
 ├── features/                      # App logic modules (core brains)
-│   │   └── init
+│   │   └── __init__.py
 │   ├── character_generator.py     # Builds full character from weather + inputs
 │   ├── weather_fetcher.py         # Pulls forecast data (city + random city)
 │   ├── name_generator.py          # Race- and gender-based name logic
@@ -32,7 +33,7 @@ tempestbourne/
 │   ├── gif_generator.py           # Builds GIFs from code 
 │
 ├── gui/                           # GUI elements (optional modular split)
-│   │   └── init
+│   │   └── __init__.py
 │   ├── input_form.py              # Builds and validates user form
 │   ├── character_gui.py           # gui for converting character into GIFs
 │   ├── results_display.py         # Shows generated characters and GIFs
@@ -41,13 +42,13 @@ tempestbourne/
 
 │
 ├── storage/                       # Local save/load (optional DB-style logic)
-│   │   └── init
+│   │   └── __init__.py
 │   └── local_db.py                # Save/load character data
 │
 ├── utils/                         # Constants, helpers, formatters
-│   │   └── init
+│   │   └── __init__.py
 │   ├── constants.py               # Lists of races, classes, alignments, weather mappings
-│   ├── formatters.py              # Helper functions for text, colors, etc.
+│   ├── helper.py                  # Helper functions for text, colors, etc.
 │   └── validators.py              # Input validation, type checks, etc.
 │
 └── tests/                         # Future-proof: unit tests (if desired)

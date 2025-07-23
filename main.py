@@ -2,6 +2,7 @@
 
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 from gui.input_form import InputForm
 from gui.results_display import CharacterResultsFrame
 from features.character_generator import generate_character
@@ -37,8 +38,8 @@ def handle_form_submission(form_data):
     try:
         weather_user = get_weather_data_for_city(city, requested_datetime)
     except Exception as e:
-        print(f"[Weather Error] Failed to fetch weather for user city: {e}")
-        return
+        messagebox.showerror("Weather Error", f"Could not fetch weather for {city}.\n{e}")
+    return
 
     # Step 4: Pick a random city and fetch its weather
     random_city = get_random_city(exclude=city)
