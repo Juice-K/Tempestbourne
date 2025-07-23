@@ -7,7 +7,14 @@ from gui.input_form import InputForm
 from gui.results_display import CharacterResultsFrame
 from features.character_generator import generate_character
 from features.weather_fetcher import get_weather_data_for_city, get_random_city
-import datetime
+import datetime 
+import os
+import json
+from dotenv import load_dotenv
+load_dotenv()
+
+# print("CWD:", os.getcwd())
+
 
 # --- App Setup ---
 root = tk.Tk()
@@ -69,3 +76,4 @@ form = InputForm(root, on_submit_callback=handle_form_submission)
 form.pack(padx=20, pady=(20, 10))
 
 root.mainloop()
+# print("OPENAI API KEY:", os.getenv("OPENAI_API_KEY"))

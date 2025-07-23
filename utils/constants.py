@@ -1,5 +1,11 @@
 # Constants
 
+PLACEHOLDER_IMAGE_PATH = "assets/images/placeholder.gif"
+DEFAULT_GIF_OUTPUT_PATH = "storage/gifs/"
+DEFAULT_IMAGE_SAVE_PATH = "storage/images/"
+
+
+
 #     # test for mapping weather to traits (in case of emergency)
 WEATHER_TO_TRAITS = {
     "Clear": {"alignment": "Lawful Good", "race": "Elf"},
