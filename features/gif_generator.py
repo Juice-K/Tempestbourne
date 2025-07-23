@@ -3,6 +3,7 @@
 import os
 import time
 import openai
+import requests
 from PIL import Image
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -12,7 +13,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # Set your OpenAI API key
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Best practice: set this in your environment
+OPENAI_API_KEY = os.getenv("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")  # Best practice: set this in your environment
 
 def generate_image(prompt, output_path="generated_image.png"):
     response = openai.images.generate(
