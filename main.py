@@ -13,8 +13,6 @@ import json
 from dotenv import load_dotenv
 load_dotenv()
 
-# print("CWD:", os.getcwd())
-
 
 # --- App Setup ---
 root = tk.Tk()
@@ -46,7 +44,7 @@ def handle_form_submission(form_data):
         weather_user = get_weather_data_for_city(city, requested_datetime)
     except Exception as e:
         messagebox.showerror("Weather Error", f"Could not fetch weather for {city}.\n{e}")
-    return
+        return
 
     # Step 4: Pick a random city and fetch its weather
     random_city = get_random_city(exclude=city)

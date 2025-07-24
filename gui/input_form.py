@@ -30,12 +30,12 @@ class InputForm(ttk.Frame):
         # --- Time Input (HH:MM 24h) ---
         ttk.Label(self, text="Time (24h - HH:MM):").grid(row=2, column=0, sticky="w", pady=2)
         self.time_entry = ttk.Entry(self)
-        self.time_entry.insert(0, "12:00")
+        self.time_entry.insert(0, "17:00")
         self.time_entry.grid(row=2, column=1, pady=2)
 
         # --- Gender Dropdown ---
         ttk.Label(self, text="Gender:").grid(row=3, column=0, sticky="w", pady=2)
-        self.gender_var = tk.StringVar(value="Nonbinary")
+        self.gender_var = tk.StringVar(value="Female")
         gender_options = ["Male", "Female", "Nonbinary"]
         self.gender_menu = ttk.OptionMenu(self, self.gender_var, gender_options[2], *gender_options)
         self.gender_menu.grid(row=3, column=1, pady=2)

@@ -6,8 +6,9 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
+api_key = os.getenv("OPENWEATHER_API_KEY")
 
-API_KEY = os.getenv("5bf329464f3b0c878c8eb1846b65c08e")
+OPENWEATHER_API_KEY = api_key
 BASE_URL = "https://api.openweathermap.org/data/2.5/forecast"
 
 def get_forecast_weather(city, date_str, time_str):
@@ -16,7 +17,7 @@ def get_forecast_weather(city, date_str, time_str):
     """
     target_dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M")
 
-    params = {"q": city, "appid": API_KEY, "units": "metric"}
+    params = {"q": city, "appid": OPENWEATHER_API_KEY, "units": "metric"}
     response = requests.get(BASE_URL, params=params)
 
     if response.status_code != 200:
@@ -51,3 +52,4 @@ def get_random_city(exclude=None):
     """
     choices = [city for city in CITY_POOL if city.lower() != exclude.lower()]
     return random.choice(choices)
+

@@ -9,12 +9,12 @@ tempestbourne/
 │── starter_code.py                # Code for any additional features before implementation 
 
 ├── assets/                        # All visual/media assets
-│   ├── gifs/                      # Race+Class-based animated GIFs
-│   │   ├── elf_fighter.gif
-│   │   ├── tiefling_bard.gif
-│   │   └── ...
+│   ├── fonts/                     # Fonts
+│   ├── images/                    # Race+Class-based animated GIFs
+│   │   ├── .keep
+│   │   ├── placeholder.gif
 │   └── templates/                 # PDF/character sheet templates (if needed)
-││   │   └── README.md
+│   │   └── README.md
 
 ├── data/                          # Weather samples, saved characters, logs
 │   ├── sample_weather.json
@@ -43,7 +43,10 @@ tempestbourne/
 │
 ├── storage/                       # Local save/load (optional DB-style logic)
 │   │   └── __init__.py
-│   └── local_db.py                # Save/load character data
+│   ├── local_db.py                # Save/load character data
+│   └── gifs                       # GIFs folder
+│   └── pdfs                       # PDFs folder
+
 │
 ├── utils/                         # Constants, helpers, formatters
 │   │   └── __init__.py
