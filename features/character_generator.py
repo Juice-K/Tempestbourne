@@ -2,6 +2,7 @@
 
 import random
 import os
+from features.gif_selector import create_animated_character_gif 
 from utils.constants import (
     RACES, CLASSES, ALIGNMENTS,
     WEATHER_TO_TRAITS, WEATHER_MAIN_TO_CLASSES,

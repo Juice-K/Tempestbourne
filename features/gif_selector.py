@@ -1,8 +1,11 @@
 # features/gif_selector.py
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
 import time
 import requests
+import openai
 from io import BytesIO
 from PIL import Image
 import openai  # DALL·E 3 API
@@ -11,10 +14,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from dotenv import load_dotenv
-load_dotenv()
-import json
 from utils.constants import PLACEHOLDER_IMAGE_PATH, DEFAULT_IMAGE_SAVE_PATH, DEFAULT_GIF_OUTPUT_PATH
+import uuid
+
+# create unique filenames for GIFs
+def unique_filename(extension="gif"):
+    return f"{uuid.uuid4().hex[:8]}.{extension}"
+
 
 # === Config ===
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -80,7 +86,7 @@ def upload_to_ezgif_and_animate(image_path: str, output_path: str = DEFAULT_GIF_
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome(options=chrome_options)
-
+    # Ensure the path to chromedriver is set in your environment variables or PATH
     try:
         driver.get("https://ezgif.com/effects")
         wait = WebDriverWait(driver, 10)
@@ -103,12 +109,13 @@ def upload_to_ezgif_and_animate(image_path: str, output_path: str = DEFAULT_GIF_
 
         response = requests.get(gif_url)
         response.raise_for_status()
-
+        # Save the GIF
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         with open(output_path, "wb") as f:
             f.write(response.content)
 
         return output_path
+    # Handle errors gracefully
     except Exception as e:
         print("[Error] GIF generation failed:", e)
         return None
@@ -118,44 +125,60 @@ def upload_to_ezgif_and_animate(image_path: str, output_path: str = DEFAULT_GIF_
 
 # === Unified Generator ===
 def create_animated_character_gif(character_data: dict) -> str:
-    """
-    Creates a GIF from character data via OpenAI + Ezgif automation.
-    """
     prompt = generate_gif_prompt(character_data)
+    print("[GIF Gen] Prompt sent to OpenAI:", prompt)
+
+    # organize GIF paths
+    # Use unique filenames to avoid conflicts
+    image_path = os.path.join("assets/images", unique_filename("png"))
+    gif_path = os.path.join("assets/images", unique_filename("gif"))
+    
+    # Generate image first
     image_path = generate_image(prompt)
     if not image_path:
+        print("❌ Failed to generate image.")
         return None
+    else:
+        print(f"[GIF Gen] Image saved at: {image_path}")
+
+    # Then create GIF from the image
     gif_path = upload_to_ezgif_and_animate(image_path)
+    if not gif_path or not os.path.exists(gif_path):
+        print("❌ Failed to generate or locate final GIF.")
+        return None
+
+    print(f"✅ Final GIF generated at: {gif_path}")
     return gif_path
 
 
-# === Mock/Placeholder Tools ===
-def get_image_from_openai(prompt, save_path=DEFAULT_IMAGE_SAVE_PATH):
-    """
-    Mock version of image generation (for local testing without API calls).
-    """
-    print(f"[Mock] Generating image with prompt: {prompt}")
-    if os.path.exists(PLACEHOLDER_IMAGE_PATH):
-        os.makedirs(os.path.dirname(save_path), exist_ok=True)
-        with open(PLACEHOLDER_IMAGE_PATH, 'rb') as src, open(save_path, 'wb') as dst:
-            dst.write(src.read())
-    return save_path
 
-def get_gif_placeholder(character_data):
-    """
-    Placeholder function for image + future gif.
-    """
-    prompt = generate_gif_prompt(character_data)
-    image_path = get_image_from_openai(prompt)
-    return {
-        "prompt": prompt,
-        "image_path": image_path,
-        "status": "Image ready, GIF animation pending (ezgif.com)"
-    }
+# # === Mock/Placeholder Tools ===
+# def get_image_from_openai(prompt, save_path=DEFAULT_IMAGE_SAVE_PATH):
+#     """
+#     Mock version of image generation (for local testing without API calls).
+#     """
+#     print(f"[Mock] Generating image with prompt: {prompt}")
+#     if os.path.exists(PLACEHOLDER_IMAGE_PATH):
+#         os.makedirs(os.path.dirname(save_path), exist_ok=True)
+#         with open(PLACEHOLDER_IMAGE_PATH, 'rb') as src, open(save_path, 'wb') as dst:
+#             dst.write(src.read())
+#     return save_path
 
-def generate_gif_from_prompt(prompt: str) -> str:
-    """
-    Future integration stub with external video-to-GIF generator tools.
-    """
-    print("Sending prompt to GIF generator (stub):", prompt)
-    return "data/gifs/placeholder.gif"
+# def get_gif_placeholder(character_data):
+#     """
+#     Placeholder function for image + future gif.
+#     """
+#     prompt = generate_gif_prompt(character_data)
+#     image_path = get_image_from_openai(prompt)
+#     return {
+#         "prompt": prompt,
+#         "image_path": image_path,
+#         "status": "Image ready, GIF animation pending (ezgif.com)"
+#     }
+
+# def generate_gif_from_prompt(prompt: str) -> str:
+#     """
+#     Future integration stub with external video-to-GIF generator tools.
+#     """
+#     print("Sending prompt to GIF generator (stub):", prompt)
+#     return "data/gifs/placeholder.gif"

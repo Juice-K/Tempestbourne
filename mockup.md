@@ -30,7 +30,6 @@ tempestbourne/
 │   ├── gif_selector.py            # Maps race/class to GIF asset
 │   ├── ai_prompter.py             # Generates prompts for external AI tools
 │   └── export_tools.py            # Saves to PDF or character sheets
-│   ├── gif_generator.py           # Builds GIFs from code 
 │
 ├── gui/                           # GUI elements (optional modular split)
 │   │   └── __init__.py

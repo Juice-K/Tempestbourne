@@ -37,7 +37,7 @@ class InputForm(ttk.Frame):
         ttk.Label(self, text="Gender:").grid(row=3, column=0, sticky="w", pady=2)
         self.gender_var = tk.StringVar(value="Female")
         gender_options = ["Male", "Female", "Nonbinary"]
-        self.gender_menu = ttk.OptionMenu(self, self.gender_var, gender_options[2], *gender_options)
+        self.gender_menu = ttk.OptionMenu(self, self.gender_var, gender_options[1], *gender_options)
         self.gender_menu.grid(row=3, column=1, pady=2)
 
         # --- Level Dropdown (1–20) ---
