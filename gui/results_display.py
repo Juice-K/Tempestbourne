@@ -3,12 +3,29 @@
 
 import tkinter as tk
 from tkinter import ttk
-from gui.gif_preview_frame import GifPreviewFrame
 
 class CharacterResultsFrame(tk.Frame):
     def __init__(self, parent, character, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
         self.character = character
+
+        # --- Create canvas + scrollbar ---
+        canvas = tk.Canvas(self, borderwidth=0)
+        scrollbar = ttk.Scrollbar(self, orient="vertical", command=canvas.yview)
+        scroll_frame = ttk.Frame(canvas)
+
+        scroll_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(
+                scrollregion=canvas.bbox("all")
+            )
+        )
+
+        canvas.create_window((0, 0), window=scroll_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
 
         # --- Header ---
         header = ttk.Label(self, text=f"{character.name} — Level {character.level} {character.race} {character.char_class}", font=("Helvetica", 14, "bold"))
@@ -17,10 +34,6 @@ class CharacterResultsFrame(tk.Frame):
         # --- Bio ---
         bio_label = ttk.Label(self, text=character.bio, wraplength=400, justify="center")
         bio_label.pack(pady=(0, 10))
-
-        # --- GIF Preview ---
-        gif_frame = GifPreviewFrame(self, gif_path=character.gif_path or "assets/default.gif")
-        gif_frame.pack(pady=(0, 10))
 
         # --- Stats ---
         stats_frame = ttk.LabelFrame(self, text="Stats")

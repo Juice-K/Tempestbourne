@@ -2,20 +2,16 @@
 
 import random
 import os
-from features.gif_selector import create_animated_character_gif 
 from utils.constants import (
     RACES, CLASSES, ALIGNMENTS,
     WEATHER_TO_TRAITS, WEATHER_MAIN_TO_CLASSES,
     WEATHER_CODE_TO_RACE
 )
-from features.gif_selector import (
-    generate_gif_prompt,
-    create_animated_character_gif
-)
+
 
 # === Character Object ===
 class Character:
-    def __init__(self, name, gender, race, char_class, alignment, hp, level, stats, skills, equipment, bio, gif_path):
+    def __init__(self, name, gender, race, char_class, alignment, hp, level, stats, skills, equipment, bio,):
         self.name = name
         self.gender = gender
         self.race = race
@@ -27,7 +23,6 @@ class Character:
         self.skills = skills
         self.equipment = equipment
         self.bio = bio
-        self.gif_path = gif_path
 
     def to_dict(self):
         return vars(self)
@@ -65,17 +60,10 @@ def generate_character(weather_data, level, gender):
         "weather_description": description
     }
 
-    try:
-        gif_path = create_animated_character_gif(character_dict)
-        if not gif_path:
-            raise Exception("No GIF generated.")
-    except Exception as e:
-        print(f"[GIF Generator] Failed, using fallback GIF: {e}")
-        gif_path = get_gif_path(race, char_class)
 
     return Character(
         name, gender, race, char_class, alignment, hp, level,
-        stats, skills, equipment, bio, gif_path
+        stats, skills, equipment, bio, 
     )
 
 

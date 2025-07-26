@@ -51,6 +51,16 @@ class InputForm(ttk.Frame):
         submit_btn = ttk.Button(self, text="Generate Character", command=self.submit)
         submit_btn.grid(row=5, column=0, columnspan=2, pady=(10, 5))
 
+    def get_form_data(self):
+        return {
+            "city": self.city_entry.get(),
+            "date": self.date_var.get(),
+            "time": self.time_entry.get(),
+            "gender": self.gender_var.get(),
+            "level": self.level_var.get()
+        }
+
+
     def submit(self):
         form_data = {
             "city": self.city_entry.get(),

@@ -27,8 +27,6 @@ tempestbourne/
 │   ├── weather_fetcher.py         # Pulls forecast data (city + random city)
 │   ├── name_generator.py          # Race- and gender-based name logic
 │   ├── bio_generator.py           # Creates 2-line backstory
-│   ├── gif_selector.py            # Maps race/class to GIF asset
-│   ├── ai_prompter.py             # Generates prompts for external AI tools
 │   └── export_tools.py            # Saves to PDF or character sheets
 │
 ├── gui/                           # GUI elements (optional modular split)
@@ -36,7 +34,6 @@ tempestbourne/
 │   ├── input_form.py              # Builds and validates user form
 │   ├── character_gui.py           # gui for converting character into GIFs
 │   ├── results_display.py         # Shows generated characters and GIFs
-│   └── buttons.py                 # Export/save buttons
 │   └── gif_preview_frame.py       # Gives logic for previewing GIFs
 
 │
