@@ -13,10 +13,14 @@ from gui.input_form import InputForm
 from gui.results_display import CharacterResultsFrame, WeatherComparisonFrame   # GUI components for displaying results
 from features.character_generator import generate_character
 from features.weather_fetcher import get_weather_data_for_city, get_random_city
-from features.export_tools import export_character_to_pdf 
 
 
-load_dotenv()
+load_dotenv() # Load environment variables
+
+# --- Custom GUI Theme ---
+style = ttk.Style() # Use default theme
+style.theme_use("default") # Set the default theme
+
 
 # --- Helper: Get Inspirational Quote ---
 def get_random_quote():
@@ -94,7 +98,12 @@ def handle_form_submission(form_data):
     # 🎲 Generate characters
     char_user = generate_character(weather_user, level, gender)
     char_random = generate_character(weather_random, level, gender)
-    
+
+    # 🧹 Clear old results
+    for widget in scrollable_frame.winfo_children():
+        widget.destroy()
+
+    # 🖼️ Display weather comparison    
     ttk.Label(scrollable_frame, text="🌍 Weather Comparison", font=("Helvetica", 12, "bold")).pack(pady=(20, 0))
     WeatherComparisonFrame(
         scrollable_frame,
@@ -104,38 +113,40 @@ def handle_form_submission(form_data):
         city2=random_city
     ).pack(pady=10, fill="both", expand=True)
 
-    # 🧹 Clear old results
-    for widget in scrollable_frame.winfo_children():
-        widget.destroy()
 
     # alter theme by weather results
     def apply_weather_theme(condition):
-        if "rain" in condition.lower():
-            style.configure("TFrame", background="#dce3f0") # 'pale blue' for rain
+        if not isinstance(condition, str):  # Ensure condition is a string
+            return  # or log it and return  
+
+        condition = condition.lower()  # Normalize condition to lowercase to avoid crashes
+
+        if "rain" in condition:
+            style.configure("TFrame", background="#dce3f0") # Light blue for rainy weather
             style.configure("TLabel", background="#dce3f0")
-        elif "clear" in condition.lower():
-            style.configure("TFrame", background="#fff9e6") # Cosmic latte (light cream)
+        elif "clear" in condition:
+            style.configure("TFrame", background="#fff9e6") # Light cream for clear weather
             style.configure("TLabel", background="#fff9e6")
-        elif "cloud" in condition.lower():
-            style.configure("TFrame", background="#e6e6e6") # cloud grey
+        elif "cloud" in condition:
+            style.configure("TFrame", background="#e6e6e6") # Light gray for cloudy weather
             style.configure("TLabel", background="#e6e6e6")
-        elif "storm" in condition.lower():
-            style.configure("TFrame", background="#f0f0f07f") # stormy grey
+        elif "storm" in condition:
+            style.configure("TFrame", background="#f0f0f07f") # Light gray for stormy weather
             style.configure("TLabel", background="#f0f0f07f")
-        elif "snow" in condition.lower():
-            style.configure("TFrame", background="#84D2F9") # 'light blue' for snow
+        elif "snow" in condition:
+            style.configure("TFrame", background="#84D2F9") # Light blue for snowy weather
             style.configure("TLabel", background="#84D2F9")
-        elif "thunderstorm" in condition.lower():
-            style.configure("TFrame", background="#5e0770") # dark violet
+        elif "thunderstorm" in condition:
+            style.configure("TFrame", background="#5e0770") # Dark purple for stormy weather
             style.configure("TLabel", background="#5e0770")
         else:
-            style.configure("TFrame", background="#f5f5f5") # #white smoke 
+            style.configure("TFrame", background="#f5f5f5") # light gray background
             style.configure("TLabel", background="#f5f5f5")
 
-    apply_weather_theme(weather_user.get("main", ""))
+    main_condition = weather_user.get("weather", [{}])[0].get("main", "") # Get the main weather condition
+    apply_weather_theme(main_condition)                                   # Apply the theme based on the main condition
 
-
-    # 🖼️ Display results
+    # 🖼️ Display results in a scrollbox
     ttk.Label(scrollable_frame, text=f"🌆 {city} Adventurer", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
     CharacterResultsFrame(scrollable_frame, character=char_user).pack(pady=10)
 
@@ -169,9 +180,6 @@ reset_btn.grid(row=0, column=1, padx=5)
 # --- Bind Return Key ---
 root.bind("<Return>", lambda event: handle_form_submission(form.get_form_data()))
 
-# --- Custom GUI Theme ---
-style = ttk.Style()
-style.theme_use("default")
 
 # Base colors
 base_bg = "#f5f5f5"
@@ -190,5 +198,12 @@ style.map("TScrollbar", background=[("active", highlight_color)])
 # Quote tweak
 quote_label.configure(foreground="#333333")
 
+# ensure the code is getting to this point
+print("App launching...")
+
 # --- Run App ---
-root.mainloop()
+if __name__ == "__main__":
+    try:
+        root.mainloop()
+    except Exception as e:
+        print(f"[Main Error] {e}")

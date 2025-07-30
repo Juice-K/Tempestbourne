@@ -11,6 +11,7 @@ class InputForm(ttk.Frame):
         self.on_submit_callback = on_submit_callback
         self.build_form()
 
+    # This stuff is mostly self-explanatory / builds the input form
     def build_form(self):
         # --- City Input ---
         ttk.Label(self, text="City:").grid(row=0, column=0, sticky="w", pady=(5, 2))
@@ -21,7 +22,7 @@ class InputForm(ttk.Frame):
         ttk.Label(self, text="Date:").grid(row=1, column=0, sticky="w", pady=2)
         today = datetime.now()
         self.date_options = [
-            (today + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(4)
+            (today + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(4) # Next 4 days
         ]
         self.date_var = tk.StringVar(value=self.date_options[0])
         self.date_menu = ttk.OptionMenu(self, self.date_var, self.date_options[0], *self.date_options)
@@ -51,6 +52,7 @@ class InputForm(ttk.Frame):
         submit_btn = ttk.Button(self, text="Generate Character", command=self.submit)
         submit_btn.grid(row=5, column=0, columnspan=2, pady=(10, 5))
 
+    # Submit the form data
     def get_form_data(self):
         return {
             "city": self.city_entry.get(),
@@ -59,15 +61,20 @@ class InputForm(ttk.Frame):
             "gender": self.gender_var.get(),
             "level": self.level_var.get()
         }
-
-
+        # self.on_submit_callback(form_data)
+   
+        # Submit the form data 
     def submit(self):
-        form_data = {
-            "city": self.city_entry.get(),
-            "date": self.date_var.get(),
-            "time": self.time_entry.get(),
-            "gender": self.gender_var.get(),
-            "level": self.level_var.get()
-        }
-        self.on_submit_callback(form_data)
+        if self.on_submit_callback:  # Check if callback is set
+            self.on_submit_callback(self.get_form_data())
+        else:
+            print("No callback set for form submission.")   
 
+
+    # Reset the form fields (button) 
+    def reset(self):
+        self.city_entry.delete(0, tk.END)
+        self.time_entry.delete(0, tk.END)
+        self.date_var.set(self.date_options[0])  # Reset to the first date
+        self.level_var.set(1)
+        self.gender_var.set("Female")  

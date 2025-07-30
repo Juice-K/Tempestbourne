@@ -43,7 +43,10 @@ def get_weather_data_for_city(city, datetime_str):
 CITY_POOL = [
     "Tokyo", "Paris", "Cairo", "São Paulo", "Bangkok",
     "New York", "Moscow", "Reykjavik", "Toronto", "Sydney",
-    "Cape Town", "Mumbai", "Istanbul", "Oslo", "Buenos Aires"
+    "Cape Town", "Mumbai", "Istanbul", "Oslo", "Buenos Aires",
+    "Berlin", "Madrid", "Rome", "Athens", "Dubai", "Barcelona",
+    "Seoul", "Singapore", "Hong Kong", "Kuala Lumpur", "Jakarta",
+    "Lagos", "Nairobi", "Hanoi", "Lima",
 ]
 
 def get_random_city(exclude=None):
