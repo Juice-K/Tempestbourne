@@ -3,7 +3,6 @@
 
 from reportlab.lib.pagesizes import letter   # pretty obvious - 8.5 inches x 11 inches or 612 points x 792 points
 from reportlab.pdfgen import canvas   # for creating PDF files and treating them like a "canvas"
-from PIL import Image  # optional: for adding images
 import os  # for file path operations 
 
 def export_character_to_pdf(character_data: dict, filename: str = "tempestbourne_character.pdf"):
@@ -50,13 +49,6 @@ def export_character_to_pdf(character_data: dict, filename: str = "tempestbourne
         c.drawString(70, y, line)
         y -= spacing
 
-    # Optional: Add character GIF/image
-    image_path = character_data.get("image_path")
-    if image_path and os.path.exists(image_path):
-        try:
-            c.drawImage(image_path, width - 200, height - 300, width=120, height=120)
-        except Exception as e:
-            print("Image load failed:", e)
 
     # Save PDF
     c.save()

@@ -1,15 +1,20 @@
 # main.py
 
-import tkinter as tk
-from tkinter import ttk, messagebox
-from gui.input_form import InputForm
-from gui.results_display import CharacterResultsFrame
-from features.character_generator import generate_character
-from features.weather_fetcher import get_weather_data_for_city, get_random_city
-from dotenv import load_dotenv
 import csv
 import random
 import os
+from dotenv import load_dotenv
+import matplotlib as plt
+plt.use('TkAgg')  # Use TkAgg backend for matplotlib
+import seaborn as sns
+import tkinter as tk
+from tkinter import ttk, messagebox
+from gui.input_form import InputForm   
+from gui.results_display import CharacterResultsFrame, WeatherComparisonFrame   # GUI components for displaying results
+from features.character_generator import generate_character
+from features.weather_fetcher import get_weather_data_for_city, get_random_city
+from features.export_tools import export_character_to_pdf 
+
 
 load_dotenv()
 
@@ -57,6 +62,13 @@ canvas.configure(yscrollcommand=scrollbar.set)
 canvas.pack(side="left", fill="both", expand=True)
 scrollbar.pack(side="right", fill="y")
 
+# Bind mouse wheel for scrolling
+def _on_mousewheel(event):
+    canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
+scrollable_frame.bind_all("<MouseWheel>", _on_mousewheel)
+
+
 # --- Form Submission Handler ---
 def handle_form_submission(form_data):
     city = form_data["city"]
@@ -82,10 +94,46 @@ def handle_form_submission(form_data):
     # 🎲 Generate characters
     char_user = generate_character(weather_user, level, gender)
     char_random = generate_character(weather_random, level, gender)
+    
+    ttk.Label(scrollable_frame, text="🌍 Weather Comparison", font=("Helvetica", 12, "bold")).pack(pady=(20, 0))
+    WeatherComparisonFrame(
+        scrollable_frame,
+        weather1=weather_user,
+        weather2=weather_random,
+        city1=city,
+        city2=random_city
+    ).pack(pady=10, fill="both", expand=True)
 
     # 🧹 Clear old results
     for widget in scrollable_frame.winfo_children():
         widget.destroy()
+
+    # alter theme by weather results
+    def apply_weather_theme(condition):
+        if "rain" in condition.lower():
+            style.configure("TFrame", background="#dce3f0") # 'pale blue' for rain
+            style.configure("TLabel", background="#dce3f0")
+        elif "clear" in condition.lower():
+            style.configure("TFrame", background="#fff9e6") # Cosmic latte (light cream)
+            style.configure("TLabel", background="#fff9e6")
+        elif "cloud" in condition.lower():
+            style.configure("TFrame", background="#e6e6e6") # cloud grey
+            style.configure("TLabel", background="#e6e6e6")
+        elif "storm" in condition.lower():
+            style.configure("TFrame", background="#f0f0f07f") # stormy grey
+            style.configure("TLabel", background="#f0f0f07f")
+        elif "snow" in condition.lower():
+            style.configure("TFrame", background="#84D2F9") # 'light blue' for snow
+            style.configure("TLabel", background="#84D2F9")
+        elif "thunderstorm" in condition.lower():
+            style.configure("TFrame", background="#5e0770") # dark violet
+            style.configure("TLabel", background="#5e0770")
+        else:
+            style.configure("TFrame", background="#f5f5f5") # #white smoke 
+            style.configure("TLabel", background="#f5f5f5")
+
+    apply_weather_theme(weather_user.get("main", ""))
+
 
     # 🖼️ Display results
     ttk.Label(scrollable_frame, text=f"🌆 {city} Adventurer", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
@@ -120,6 +168,27 @@ reset_btn.grid(row=0, column=1, padx=5)
 
 # --- Bind Return Key ---
 root.bind("<Return>", lambda event: handle_form_submission(form.get_form_data()))
+
+# --- Custom GUI Theme ---
+style = ttk.Style()
+style.theme_use("default")
+
+# Base colors
+base_bg = "#f5f5f5"
+accent_color = "#6a5acd"  # Slate blue
+highlight_color = "#ffcc00"  # Gold
+
+# General styling
+style.configure("TFrame", background=base_bg)
+style.configure("TLabel", background=base_bg, font=("Helvetica", 10))
+style.configure("TButton", font=("Helvetica", 10, "bold"), padding=6)
+style.configure("TScrollbar", troughcolor=accent_color, background=highlight_color)
+
+# Scrollbar active hover
+style.map("TScrollbar", background=[("active", highlight_color)])
+
+# Quote tweak
+quote_label.configure(foreground="#333333")
 
 # --- Run App ---
 root.mainloop()
