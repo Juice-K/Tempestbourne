@@ -2,7 +2,7 @@
 # gui/results_display.py
 
 import tkinter as tk
-from tkinter import ttk
+from tkinter import tk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import seaborn as sns
@@ -20,8 +20,8 @@ class CharacterResultsFrame(tk.Frame):
 
         # --- Create canvas + scrollbar ---
         canvas = tk.Canvas(self, borderwidth=0)
-        scrollbar = ttk.Scrollbar(self, orient="vertical", command=canvas.yview)
-        scroll_frame = ttk.Frame(canvas)
+        scrollbar = tk.Scrollbar(self, orient="vertical", command=canvas.yview)
+        scroll_frame = tk.Frame(canvas)
 
         scroll_frame.bind(
             "<Configure>",
@@ -35,33 +35,33 @@ class CharacterResultsFrame(tk.Frame):
         scrollbar.pack(side="right", fill="y")
 
         # --- Header ---
-        header = ttk.Label(scroll_frame, text=f"{character.name} — Level {character.level} {character.race} {character.char_class}", font=("Helvetica", 14, "bold"))
+        header = tk.Label(scroll_frame, text=f"{character.name} — Level {character.level} {character.race} {character.char_class}", font=("Helvetica", 14, "bold"))
         header.pack(pady=(10, 5))
 
         # --- Bio ---
-        bio_label = ttk.Label(scroll_frame, text=character.bio, wraplength=400, justify="center")
+        bio_label = tk.Label(scroll_frame, text=character.bio, wraplength=400, justify="center")
         bio_label.pack(pady=(0, 10))
 
         # --- Stats ---
-        stats_frame = ttk.LabelFrame(scroll_frame, text="Stats")
+        stats_frame = tk.LabelFrame(scroll_frame, text="Stats")
         stats_frame.pack(padx=10, pady=5, fill="x")
         for stat, value in character.stats.items():
-            ttk.Label(stats_frame, text=f"{stat}: {value}").pack(anchor="w", padx=10)
+            tk.Label(stats_frame, text=f"{stat}: {value}").pack(anchor="w", padx=10)
 
         # --- Skills ---
-        skills_frame = ttk.LabelFrame(scroll_frame, text="Skills")
+        skills_frame = tk.LabelFrame(scroll_frame, text="Skills")
         skills_frame.pack(padx=10, pady=5, fill="x")
         for skill in character.skills:
-            ttk.Label(skills_frame, text=skill).pack(anchor="w", padx=10)
+            tk.Label(skills_frame, text=skill).pack(anchor="w", padx=10)
 
         # --- Equipment ---
-        equip_frame = ttk.LabelFrame(scroll_frame, text="Equipment")
+        equip_frame = tk.LabelFrame(scroll_frame, text="Equipment")
         equip_frame.pack(padx=10, pady=5, fill="x")
         for item in character.equipment:
-            ttk.Label(equip_frame, text=item).pack(anchor="w", padx=10)
+            tk.Label(equip_frame, text=item).pack(anchor="w", padx=10)
 
         # --- Alignment Display ---
-        align_label = ttk.Label(scroll_frame, text=f"Alignment: {character.alignment}", font=("Helvetica", 10, "italic"))
+        align_label = tk.Label(scroll_frame, text=f"Alignment: {character.alignment}", font=("Helvetica", 10, "italic"))
         align_label.pack(pady=(5, 10))
 
         # --- Weather Comparison Plots ---
@@ -90,7 +90,7 @@ plt.rcParams.update({
 })
 
 # WeatherComparisonFrame creates a tabbed interface for weather comparisons
-class WeatherComparisonFrame(ttk.Notebook):
+class WeatherComparisonFrame(tk.Notebook):
 
     # Initialize the WeatherComparisonFrame with weather data and cities
     def __init__(self, parent, weather1, weather2, city1, city2):
@@ -98,8 +98,8 @@ class WeatherComparisonFrame(ttk.Notebook):
 
         self.weather_df = self.prepare_weather_dataframe(weather1, weather2, city1, city2)
 
-        self.ridgeline_tab = ttk.Frame(self)
-        self.radial_tab = ttk.Frame(self)
+        self.ridgeline_tab = tk.Frame(self)
+        self.radial_tab = tk.Frame(self)
 
         self.add(self.ridgeline_tab, text="Ridgeline")
         self.add(self.radial_tab, text="Radial")
@@ -176,6 +176,6 @@ class WeatherComparisonFrame(ttk.Notebook):
 # option stats frame
 # row = 0
 # for i, (stat, value) in enumerate(character.stats.items()):
-#     ttk.Label(stats_frame, text=f"{stat}: {value}").grid(row=row, column=i % 2, sticky="w", padx=10)
+#     tk.Label(stats_frame, text=f"{stat}: {value}").grid(row=row, column=i % 2, sticky="w", padx=10)
 #     if i % 2 == 1:
 #         row += 1
