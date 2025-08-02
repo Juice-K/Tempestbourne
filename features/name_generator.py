@@ -1,8 +1,12 @@
 # Name Generator
+# this feature not currently in use
 import random
 
-# Initialize NAME_BANKS as an empty dictionary before use
+# from name_generator import generate_name
+# from name_generator import get_random_name
 
+
+# Testing the ChatGPT name-bank-style logic of grouping names by race and gender 
 # Sample name banks — expand these over time
 # NAME_BANKS = {
 #     "Elf": {
@@ -38,11 +42,12 @@ import random
 #     print(generate_name("Elf", "Nonbinary"))
 
 
-# Testing the ChatGPT name-bank-style logic of grouping names by race and gender 
 
 import random
 
 # Scaffolded NAME_BANKS covering all WEATHER_CODE_TO_RACE entries
+# name banks expanded to cover more options
+# left this function out of capstone version, but left in place for future use
 NAME_BANKS = {
     "Half-Orc":       {"Male": [], "Female": [], "Nonbinary": []},
     "Kenku":          {"Male": [], "Female": [], "Nonbinary": []},
@@ -101,7 +106,7 @@ NAME_BANKS = {
     "Aasimar":        {"Male": [], "Female": [], "Nonbinary": []},
 }
 
-
+# version for pulling random names from specific libraries (will require variable modification) 
 NAME_BANKS["Dragonborn"] = {
     "Male": [
         "Arjhan", "Balasar", "Donaar", "Ghesh", "Heskan",
@@ -596,6 +601,10 @@ def generate_name(race: str, gender: str) -> str:
 def get_random_name(race, gender):
     # Placeholder logic
     return f"{race}_{gender}_Name"
+
+# from name_generator import generate_name
+# from name_generator import get_random_name
+
 
 
 if __name__ == "__main__":
