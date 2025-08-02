@@ -2,7 +2,6 @@
 # gui/input_form.py
 
 import tkinter as tk
-from tkinter import tk
 from datetime import datetime, timedelta
 
 class InputForm(tk.Frame):

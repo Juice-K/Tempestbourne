@@ -167,15 +167,6 @@ def handle_form_submission(form_data):
             main_condition = weather_user["weather"][0].get("main", "")
         apply_weather_theme(main_condition)
 
-        # Display weather comparison    
-        tk.Label(scrollable_frame, text="🌍 Weather Comparison", font=("Helvetica", 12, "bold")).pack(pady=(20, 0))
-        WeatherComparisonFrame(
-            scrollable_frame,
-            weather1=weather_user,
-            weather2=weather_random,
-            city1=city,
-            city2=random_city
-        ).pack(pady=10, fill="both", expand=True)
 
         # Display results
         tk.Label(scrollable_frame, text=f"🌆 {city} Adventurer", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
