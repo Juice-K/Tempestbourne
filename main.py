@@ -8,12 +8,13 @@ import matplotlib
 matplotlib.use('TkAgg')  # Set backend before importing pyplot
 
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
 
 # Add error handling for custom imports
 try:
     from gui.input_form import InputForm   
-    from gui.results_display import CharacterResultsFrame
+    from gui.results_display import CharacterResultsFrame, WeatherComparisonFrame
     from features.character_generator import generate_character
     from features.weather_fetcher import get_weather_data_for_city, get_random_city
 except ImportError as e:
@@ -29,7 +30,7 @@ except Exception as e:
     print(f"[Environment Error] {e}")
 
 # --- Custom GUI Theme ---
-style = tk.Style()
+style = ttk.Style()
 style.theme_use("default")
 
 # --- Helper: Get Inspirational Quote ---
@@ -61,12 +62,12 @@ def create_main_window():
 root = create_main_window()
 
 # Container for form and buttons
-main_container = tk.Frame(root)
+main_container = ttk.Frame(root)
 main_container.pack(padx=20, pady=20, fill="both", expand=True)
 
 # --- Inspirational Quote ---
 quote_var = tk.StringVar(value=get_random_quote())
-quote_label = tk.Label(
+quote_label = ttk.Label(
     main_container,
     textvariable=quote_var,
     wraplength=500,
@@ -76,12 +77,12 @@ quote_label = tk.Label(
 quote_label.pack(pady=(0, 10))
 
 # Scrollable results container
-results_container_frame = tk.Frame(main_container)
+results_container_frame = ttk.Frame(main_container)
 results_container_frame.pack(fill="both", expand=True)
 
 canvas = tk.Canvas(results_container_frame)
-scrollbar = tk.Scrollbar(results_container_frame, orient="vertical", command=canvas.yview)
-scrollable_frame = tk.Frame(canvas)
+scrollbar = ttk.Scrollbar(results_container_frame, orient="vertical", command=canvas.yview)
+scrollable_frame = ttk.Frame(canvas)
 
 scrollable_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
 canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
@@ -167,12 +168,21 @@ def handle_form_submission(form_data):
             main_condition = weather_user["weather"][0].get("main", "")
         apply_weather_theme(main_condition)
 
+        # Display weather comparison    
+        ttk.Label(scrollable_frame, text="🌍 Weather Comparison", font=("Helvetica", 12, "bold")).pack(pady=(20, 0))
+        WeatherComparisonFrame(
+            scrollable_frame,
+            weather1=weather_user,
+            weather2=weather_random,
+            city1=city,
+            city2=random_city
+        ).pack(pady=10, fill="both", expand=True)
 
         # Display results
-        tk.Label(scrollable_frame, text=f"🌆 {city} Adventurer", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
+        ttk.Label(scrollable_frame, text=f"🌆 {city} Adventurer", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
         CharacterResultsFrame(scrollable_frame, character=char_user).pack(pady=10)
 
-        tk.Label(scrollable_frame, text=f"🧭 Random City: {random_city}", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
+        ttk.Label(scrollable_frame, text=f"🧭 Random City: {random_city}", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
         CharacterResultsFrame(scrollable_frame, character=char_random).pack(pady=10)
 
         # Update quote
@@ -206,17 +216,16 @@ except Exception as e:
     exit(1)
 
 # --- Buttons ---
-button_frame = tk.Frame(main_container)
+button_frame = ttk.Frame(main_container)
 button_frame.pack(pady=(0, 10))
 
-generate_btn = tk.Button(
+generate_btn = ttk.Button(
     button_frame, 
     text="Generate Character", 
     command=lambda: handle_form_submission(form.get_form_data())
 )
-# generate_btn.grid(row=0, column=0, padx=5)
 
-reset_btn = tk.Button(button_frame, text="Reset", command=reset_app)
+reset_btn = ttk.Button(button_frame, text="Reset", command=reset_app)
 reset_btn.grid(row=0, column=1, padx=5)
 
 # --- Bind Return Key ---

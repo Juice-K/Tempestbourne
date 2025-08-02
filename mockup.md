@@ -5,15 +5,15 @@ tempestbourne/
 ├── .gitignore
 ├── requirements.txt               # All dependencies (tkinter, requests, pillow, etc.)
 ├── README.md
-├── mockup.md                      # Visuals, sketches, or logic flow
-│── starter_code.py                # Code for any additional features before implementation 
+├── mockup.md                      # Functional directory
+│── starter_code.py                # Any functions/classes/methods not implemented 
 
 ├── assets/                        # All visual/media assets
 │   ├── fonts/                     # Fonts
 │   ├── images/                    # Race+Class-based animated GIFs
 │   │   ├── .keep
 │   │   ├── placeholder.gif
-│   └── templates/                 # PDF/character sheet templates (if needed)
+│   └── templates/                 # PDF/character sheet templates 
 │   │   └── README.md
 
 ├── data/                          # Weather samples, saved characters, logs
@@ -32,9 +32,7 @@ tempestbourne/
 ├── gui/                           # GUI elements (optional modular split)
 │   │   └── __init__.py
 │   ├── input_form.py              # Builds and validates user form
-│   ├── character_gui.py           # gui for converting character into GIFs
 │   ├── results_display.py         # Shows generated characters and GIFs
-│   └── gif_preview_frame.py       # Gives logic for previewing GIFs
 
 │
 ├── storage/                       # Local save/load (optional DB-style logic)
@@ -47,8 +45,7 @@ tempestbourne/
 ├── utils/                         # Constants, helpers, formatters
 │   │   └── __init__.py
 │   ├── constants.py               # Lists of races, classes, alignments, weather mappings
-│   ├── helper.py                  # Helper functions for text, colors, etc.
-│   └── validators.py              # Input validation, type checks, etc.
+│   └── weather_quotes.csv         # Team quotes related to the whether ;>
 │
 └── tests/                         # Future-proof: unit tests (if desired)
     └── test_character_gen.py
