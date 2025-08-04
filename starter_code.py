@@ -585,3 +585,38 @@ if __name__ == "__main__":
 #         canvas.draw()
 #         canvas.get_tk_widget().pack(fill="both", expand=True)
 
+
+# Code for weather-based results display (snowy theme, rainy theme, etc.)
+
+        # Apply weather theme
+        def apply_weather_theme(condition):
+            if not isinstance(condition, str):
+                return
+                
+            condition = condition.lower()
+
+            if "rain" in condition:
+                style.configure("TFrame", background="#dce3f0")
+                style.configure("TLabel", background="#dce3f0")
+            elif "clear" in condition:
+                style.configure("TFrame", background="#fff9e6")
+                style.configure("TLabel", background="#fff9e6")
+            elif "cloud" in condition:
+                style.configure("TFrame", background="#e6e6e6")
+                style.configure("TLabel", background="#e6e6e6")
+            elif "storm" in condition or "thunderstorm" in condition:
+                style.configure("TFrame", background="#aa81b2")
+                style.configure("TLabel", background="#aa81b2")
+            elif "snow" in condition:
+                style.configure("TFrame", background="#84D2F9")
+                style.configure("TLabel", background="#84D2F9")
+            else:
+                style.configure("TFrame", background="#f5f5f5")
+                style.configure("TLabel", background="#f5f5f5")
+
+        # Get main weather condition and apply theme
+        main_condition = ""
+        if weather_user.get("weather") and len(weather_user["weather"]) > 0:
+            main_condition = weather_user["weather"][0].get("main", "")
+        apply_weather_theme(main_condition)
+
