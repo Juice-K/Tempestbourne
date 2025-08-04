@@ -3,20 +3,18 @@ import random
 import os
 from dotenv import load_dotenv
 
-# Fix matplotlib import and backend setup
-import matplotlib
-matplotlib.use('TkAgg')  # Set backend before importing pyplot
 
+# Import tkinter components
 import tkinter as tk
-from tkinter import ttk
-from tkinter import messagebox
+from tkinter import ttk, messagebox
 
 # Add error handling for custom imports
 try:
     from gui.input_form import InputForm   
-    from gui.results_display import CharacterResultsFrame, WeatherComparisonFrame
+    from gui.results_display import CharacterResultsFrame
     from features.character_generator import generate_character
     from features.weather_fetcher import get_weather_data_for_city, get_random_city
+    from features.export_tools import export_character_to_pdf
 except ImportError as e:
     print(f"[Import Error] Failed to import required modules: {e}")
     print("Please ensure all required files are in the correct directories.")
@@ -102,6 +100,74 @@ def _on_mousewheel(event):
 # Bind mousewheel to canvas instead of scrollable_frame
 canvas.bind_all("<MouseWheel>", _on_mousewheel)
 
+# --- Export Handlers ---
+# Store generated characters globally for export
+generated_characters = {}
+
+def character_to_dict(character, city=None, weather=None):
+    """Convert character object to dictionary for export"""
+    char_dict = {
+        'name': getattr(character, 'name', 'Unknown'),
+        'race': getattr(character, 'race', 'Unknown'),
+        'char_class': getattr(character, 'char_class', 'Unknown'),
+        'level': getattr(character, 'level', 1),
+        'alignment': getattr(character, 'alignment', 'Unknown'),
+        'hp': getattr(character, 'hp', 0),
+        'bio': getattr(character, 'bio', ''),
+        'skills': getattr(character, 'skills', []),
+        'equipment': getattr(character, 'equipment', []),
+        'stats': getattr(character, 'stats', {}),
+    }
+    
+    # Add weather info if available
+    if weather and city:
+        weather_desc = "Unknown"
+        if weather.get("weather") and len(weather["weather"]) > 0:
+            weather_desc = weather["weather"][0].get("description", "Unknown")
+        char_dict['weather'] = f"{city}: {weather_desc}"
+        
+        # Add temperature if available
+        if weather.get("main", {}).get("temp"):
+            temp = weather["main"]["temp"]
+            char_dict['weather'] += f" ({temp}°F)"
+    
+    return char_dict
+
+def export_single_character(character, city=None, weather=None):
+    """Export a single character to PDF"""
+    try:
+        char_dict = character_to_dict(character, city, weather)
+        filename = f"tempestbourne_{char_dict['name'].replace(' ', '_').lower()}.pdf"
+        export_character_to_pdf(char_dict, filename)
+        print(f"Exported character: {char_dict['name']} to {filename}")
+    except Exception as e:
+        print(f"[Export Error] {e}")
+        raise e
+
+def export_all_characters():
+    """Export all generated characters to PDF"""
+    try:
+        if not generated_characters:
+            messagebox.showwarning("No Characters", "No characters have been generated yet!")
+            return
+            
+        exported_count = 0
+        for char_key, char_data in generated_characters.items():
+            char_dict = character_to_dict(
+                char_data['character'], 
+                char_data.get('city'), 
+                char_data.get('weather')
+            )
+            filename = f"tempestbourne_{char_dict['name'].replace(' ', '_').lower()}_{char_key}.pdf"
+            export_character_to_pdf(char_dict, filename)
+            exported_count += 1
+            
+        messagebox.showinfo("Export Success", f"Successfully exported {exported_count} characters!")
+        print(f"Exported {exported_count} characters")
+    except Exception as e:
+        print(f"[Export All Error] {e}")
+        messagebox.showerror("Export Error", f"Failed to export characters: {e}")
+
 # --- Form Submission Handler ---
 def handle_form_submission(form_data):
     try:
@@ -178,12 +244,27 @@ def handle_form_submission(form_data):
             city2=random_city
         ).pack(pady=10, fill="both", expand=True)
 
-        # Display results
+        # Display results in Character tab
         ttk.Label(scrollable_frame, text=f"🌆 {city} Adventurer", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
-        CharacterResultsFrame(scrollable_frame, character=char_user).pack(pady=10)
+        CharacterResultsFrame(
+            scrollable_frame, 
+            character=char_user, 
+            city1=city, 
+            weather1=weather_user,
+            export_callback=export_single_character
+        ).pack(pady=10)
 
         ttk.Label(scrollable_frame, text=f"🧭 Random City: {random_city}", font=("Helvetica", 12, "bold")).pack(pady=(10, 0))
-        CharacterResultsFrame(scrollable_frame, character=char_random).pack(pady=10)
+        CharacterResultsFrame(
+            scrollable_frame, 
+            character=char_random, 
+            city1=random_city, 
+            weather1=weather_random,
+            export_callback=export_single_character
+        ).pack(pady=10)
+        
+        # Enable export all button
+        export_all_btn.configure(state="normal")
 
         # Update quote
         quote_var.set(get_random_quote())
@@ -199,8 +280,13 @@ def reset_app():
     try:
         form.reset()
         quote_var.set(get_random_quote())
+        generated_characters.clear()
         for widget in scrollable_frame.winfo_children():
             widget.destroy()
+        
+        # Disable export button
+        export_all_btn.configure(state="disabled")
+        
         print("App reset successfully")
     except Exception as e:
         print(f"[Reset Error] {e}")
@@ -224,9 +310,19 @@ generate_btn = ttk.Button(
     text="Generate Character", 
     command=lambda: handle_form_submission(form.get_form_data())
 )
+generate_btn.grid(row=0, column=0, padx=5)
 
 reset_btn = ttk.Button(button_frame, text="Reset", command=reset_app)
 reset_btn.grid(row=0, column=1, padx=5)
+
+# Export all button (initially disabled)
+export_all_btn = ttk.Button(
+    button_frame, 
+    text="📄 Export All Characters", 
+    command=export_all_characters,
+    state="disabled"
+)
+export_all_btn.grid(row=0, column=2, padx=5)
 
 # --- Bind Return Key ---
 root.bind("<Return>", lambda event: handle_form_submission(form.get_form_data()))
