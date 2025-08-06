@@ -15,16 +15,12 @@ try:
     from features.weather_fetcher import get_weather_data_for_city, get_random_city
     from features.export_tools import export_character_to_pdf # Import the export "download all" function
 except ImportError as e:
-    print(f"[Import Error] Failed to import required modules: {e}")
-    print("Please ensure all required files are in the correct directories.")
     exit(1)
     
 # Load environment variables
 try:
     load_dotenv()
-    print("Environment variables loaded successfully")
 except Exception as e:
-    print(f"[Environment Error] {e}")
     
 # --- Custom GUI Theme ---
 style = ttk.Style()
@@ -39,8 +35,6 @@ style.configure("TLabel", background=base_bg, font=("Helvetica", 10))
 style.configure("TButton", font=("Helvetica", 10, "bold"), padding=6)
 style.configure("TScrollbar", troughcolor=accent_color, background=highlight_color)
 style.map("TScrollbar", background=[("active", highlight_color)])
-print("App setup completed successfully")
-print("Starting main event loop...")
 
 
 # --- Get Inspirational Quote ---
@@ -48,14 +42,11 @@ def get_random_quote():
     try:
         quotes_path = os.path.join("utils", "weather_quotes.csv")
         if not os.path.exists(quotes_path):
-            print(f"[Quote Warning] File not found: {quotes_path}")
             return "Forge ahead – every storm makes a stronger hero."
         with open(quotes_path, newline='', encoding='utf-8') as csvfile:
-            quotes = [row[0] for row in csv.reader(csvfile) if row and len(row) > 0]
-        print(random.choice(quotes))
+            quotes = [row[0] for row in csv.reader(csvfile) if row and len(row) > 0])
         return random.choice(quotes) if quotes else "Forge ahead – every storm makes a stronger hero."
     except Exception as e:
-        print(f"[Quote Error] {e}")
         return "Forge ahead – every storm makes a stronger hero."
     
 # --- App Setup ---
@@ -83,7 +74,6 @@ def handle_form_submission(form_data):
         gender = form_data["gender"]
         level = int(form_data["level"])
         requested_datetime = f"{date} {time}"
-        print(f"Processing request for {city} at {requested_datetime}")
         
         # Get weather data
         try:
@@ -95,7 +85,6 @@ def handle_form_submission(form_data):
         try:
             weather_random = get_weather_data_for_city(random_city, requested_datetime)
         except Exception as e:
-            print(f"[Weather Error] Failed to fetch weather for random city: {e}")
             return
         
         # Generate characters
@@ -171,10 +160,8 @@ def handle_form_submission(form_data):
         CharacterResultsFrame(scrollable_frame, character=latest_char_random).pack(pady=10)
         
         # Update quote
-        print("Character generation completed successfully")
         
     except Exception as e:
-        print(f"[Form Submission Error] {e}")
         messagebox.showerror("Error", f"An error occurred: {e}")
         
 
@@ -183,7 +170,6 @@ try:
     form = InputForm(main_container, on_submit_callback=handle_form_submission)
     form.pack(pady=(0, 10))
 except Exception as e:
-    print(f"[Form Creation Error] {e}")
     messagebox.showerror("Initialization Error", f"Failed to create form: {e}")
     root.destroy()
     exit(1)
@@ -195,9 +181,7 @@ def reset_app():
         quote_var.set(get_random_quote())
         for widget in scrollable_frame.winfo_children():
             widget.destroy()
-        print("App reset successfully")
     except Exception as e:
-        print(f"[Reset Error] {e}")
             
     
 # --- Buttons ---
@@ -214,17 +198,17 @@ reset_btn.grid(row=0, column=1, padx=5)
 # --- Inspirational Quote Frame ---
 quote_frame = ttk.Frame(main_container)
 quote_frame.pack(side="top", fill="x", pady=(0, 15))
-# --- Inspirational Quote ---
+
 quote_var = tk.StringVar(value=get_random_quote())
 quote_label = ttk.Label(
-    main_container,
+    quote_frame,
     textvariable=quote_var,
-    wraplength=500,
+    wraplength=800,
     justify="center",
-    font=("Helvetica", 24, "italic"),
+    font=("Helvetica", 16, "italic"),
     foreground="blue"
 )
-quote_label.pack(side="top", pady=(5, 15)) # Make sure it's always visible and at the top 
+quote_label.pack(anchor="center")) # Make sure it's always visible and at the top 
 
 # Scrollable results container
 results_container_frame = ttk.Frame(main_container)
@@ -287,12 +271,8 @@ root.bind("<Return>", lambda event: handle_form_submission(form.get_form_data())
 # --- Run App ---
 if __name__ == "__main__":
     try:
-        print("Launching Tempestbourne application...")
         root.mainloop()
     except KeyboardInterrupt:
-        print("Application interrupted by user")
     except Exception as e:
-        print(f"[Main Error] {e}")
         messagebox.showerror("Critical Error", f"Application crashed: {e}")
-    finally:
-        print("Application shutting down...") 
+    finally: 

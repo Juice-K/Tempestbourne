@@ -1,49 +1,8 @@
 # Name Generator
-# this feature not currently in use
 import random
 
 # from name_generator import generate_name
 # from name_generator import get_random_name
-
-
-# Testing the ChatGPT name-bank-style logic of grouping names by race and gender 
-# Sample name banks — expand these over time
-# NAME_BANKS = {
-#     "Elf": {
-#         "Male": ["Aelar", "Faelar", "Theren", "Varis"],
-#         "Female": ["Adrie", "Shanairra", "Thia", "Keyleth"],
-#         "Nonbinary": ["Laeroth", "Syllin", "Naeris", "Myriil"]
-#     },
-#     "Tiefling": {
-#         "Male": ["Zherxik", "Kael", "Akmenos", "Lucian"],
-#         "Female": ["Lyxiss", "Irae", "Nemeia", "Vex"],
-#         "Nonbinary": ["Rhogur", "Xarrah", "Saelihn", "Drakos"]
-#     },
-#     "Human": {
-#         "Male": ["Jareth", "Tomas", "Cedric", "Rowan"],
-#         "Female": ["Elira", "Mira", "Kara", "Seraphine"],
-#         "Nonbinary": ["Lior", "Nyx", "Arden", "Quinlan"]
-#     },
-#     # Add more races as needed
-# }
-
-# def generate_name(race: str, gender: str) -> str:
-#     try:
-#         names = NAME_BANKS.get(race, {}).get(gender, [])
-#         if not names:
-#             return "Nameless One"
-#         return random.choice(names)
-#     except Exception as e:
-#         print(f"Name generation error: {e}")
-#         return "Unknown"
-
-# # Example for testing
-# if __name__ == "__main__":
-#     print(generate_name("Elf", "Nonbinary"))
-
-
-
-import random
 
 # Scaffolded NAME_BANKS covering all WEATHER_CODE_TO_RACE entries
 # name banks expanded to cover more options
@@ -590,13 +549,20 @@ NAME_BANKS.update({
 
 
 def generate_name(race: str, gender: str) -> str:
+    """
+    Generate a character name based on race and gender.
+    Falls back to 'Nameless One' if race/gender not found.
+    """
     try:
-        bank = NAME_BANKS.get(race, {})
-        names = bank.get(gender, [])
-        return random.choice(names) if names else "Nameless One"
+        race = race.capitalize()
+        gender = gender.capitalize()
+        names = NAME_BANKS.get(race, {}).get(gender, [])
+        if not names:
+            return "Nameless One"
+        return random.choice(names)
     except Exception as e:
         print(f"[NameGen Error] {e}")
-        return "Unknown"
+        return "Nameless One"
     
 def get_random_name(race, gender):
     # Placeholder logic
@@ -607,8 +573,8 @@ def get_random_name(race, gender):
 
 
 
-if __name__ == "__main__":
-    # Quick smoke-test
-    print(generate_name("Elf", "Female"))
+# if __name__ == "__main__":
+#     # Quick smoke-test
+#     print(generate_name("Elf", "Female"))
 
 

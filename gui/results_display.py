@@ -3,6 +3,10 @@
 
 import tkinter as tk
 from tkinter import ttk
+from features.export_tools import export_character_to_pdf  # Import the export function 
+from tkinter import filedialog, messagebox  # Allows the user to download the character sheet
+
+
 
 
 class CharacterResultsFrame(tk.Frame):
@@ -18,6 +22,15 @@ class CharacterResultsFrame(tk.Frame):
         canvas = tk.Canvas(self, borderwidth=0)
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=canvas.yview)
         scroll_frame = ttk.Frame(canvas)
+        
+        v_scrollbar = ttk.Scrollbar(self, orient="vertical", command=canvas.yview)
+        h_scrollbar = ttk.Scrollbar(self, orient="horizontal", command=canvas.xview)
+
+        canvas.configure(yscrollcommand=v_scrollbar.set, xscrollcommand=h_scrollbar.set)
+
+        canvas.pack(side="left", fill="both", expand=True)
+        v_scrollbar.pack(side="right", fill="y")
+        h_scrollbar.pack(side="bottom", fill="x")
 
         scroll_frame.bind(
             "<Configure>",
@@ -59,11 +72,49 @@ class CharacterResultsFrame(tk.Frame):
         # --- Alignment Display ---
         align_label = ttk.Label(scroll_frame, text=f"Alignment: {character.alignment}", font=("Helvetica", 10, "italic"))
         align_label.pack(pady=(5, 10))
+        
+        # --- Export Button ---
+        export_btn = ttk.Button(
+            scroll_frame,
+            text="Export to PDF",
+            command=lambda: export_character_to_pdf(self.character_to_dict(character))
+        )
+        export_btn.pack(pady=(10, 5))
 
 
+    def character_to_dict(self, character):
+        """
+        Converts the character object to a dictionary format for PDF export.
+        """
+        return {
+            "name": character.name,
+            "race": character.race,
+            "char_class": character.char_class,
+            "alignment": character.alignment,
+            "hp": getattr(character, "hp", "N/A"),
+            "skills": getattr(character, "skills", []),
+            "equipment": getattr(character, "equipment", []),
+            "weather": getattr(character, "weather", "Unknown"),
+            "bio": getattr(character, "bio", ""),
+        }
 
-
-
+    def save_character_pdf(self, char_dict):
+        """
+        Prompts the user to choose where to save the PDF and calls the export function.
+        """
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".pdf",
+            filetypes=[("PDF files", "*.pdf")],
+            initialfile=f"{char_dict.get('name', 'tempestbourne_character')}.pdf"
+        )
+        if file_path:
+            try:
+                export_character_to_pdf(char_dict, filename=file_path)
+                messagebox.showinfo("Export Successful", f"Character saved to:\n{file_path}")
+            except Exception as e:
+                messagebox.showerror("Export Failed", f"Could not save PDF:\n{e}")
+                
+                
 # option stats frame
 # row = 0
 # for i, (stat, value) in enumerate(character.stats.items()):

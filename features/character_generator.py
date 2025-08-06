@@ -7,7 +7,7 @@ from utils.constants import (
     WEATHER_TO_TRAITS, WEATHER_MAIN_TO_CLASSES,
     WEATHER_CODE_TO_RACE
 )
-
+from features.name_generator import generate_name  # or adjust path if it's different
 
 # === Character Object ===
 class Character:
@@ -95,12 +95,6 @@ def choose_alignment(description):
         if keyword in description:
             return WEATHER_TO_TRAITS[keyword]["alignment"]
     return random.choice(ALIGNMENTS)
-
-
-# === Trait Generators ===
-def generate_name(race, gender):
-    # Placeholder — soon to integrate with name_generator.py
-    return f"{race}_{gender}_Name"
 
 
 def calculate_hp(char_class, level):

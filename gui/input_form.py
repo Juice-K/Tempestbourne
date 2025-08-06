@@ -43,8 +43,8 @@ class InputForm(tk.Frame):
 
         # --- Level Dropdown (1–20) ---
         ttk.Label(self, text="Level:").grid(row=4, column=0, sticky="w", pady=2)
-        self.level_var = tk.IntVar(value=1)
-        level_options = list(range(1, 21))
+        self.level_var = tk.StringVar(value="1")  # <-- Changed from IntVar (previously always returned "1" as a string)
+        level_options = [str(i) for i in range(1, 21)]
         self.level_menu = ttk.OptionMenu(self, self.level_var, level_options[0], *level_options)
         self.level_menu.grid(row=4, column=1, pady=2)
 
@@ -59,7 +59,7 @@ class InputForm(tk.Frame):
             "date": self.date_var.get(),
             "time": self.time_entry.get(),
             "gender": self.gender_var.get(),
-            "level": self.level_var.get()
+            "level": int(self.level_var.get())  # <-- Always cast to int (previously alwyas returned "1" as a string)
         }
         # self.on_submit_callback(form_data)
    
